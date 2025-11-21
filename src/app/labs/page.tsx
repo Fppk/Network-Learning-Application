@@ -1,7 +1,7 @@
 import Link from "next/link"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
-import { ArrowRight, Activity, Calculator, Network, Send } from "lucide-react"
+import { ArrowRight, Activity, Calculator, Network, Send, Globe, Timer, Binary, Route, Server } from "lucide-react"
 
 export default function LabsPage() {
     const labs = [
@@ -11,6 +11,34 @@ export default function LabsPage() {
             icon: Activity,
             href: "/learn/physical-layer/digital-encoding",
             color: "text-blue-500",
+        },
+        {
+            title: "Network Delay Calculator",
+            description: "Calculate transmission and propagation delays interactively.",
+            icon: Timer,
+            href: "/learn/introduction/network-delay",
+            color: "text-red-500",
+        },
+        {
+            title: "IP Address Analyzer",
+            description: "Analyze IPv4 addresses, classes, and binary formats.",
+            icon: Binary,
+            href: "/learn/network-layer/ip-addressing",
+            color: "text-cyan-500",
+        },
+        {
+            title: "Routing Simulator",
+            description: "Visualize Dijkstra's algorithm for finding the shortest path.",
+            icon: Route,
+            href: "/learn/network-layer/routing-algorithms",
+            color: "text-emerald-500",
+        },
+        {
+            title: "DHCP Simulator",
+            description: "Visualize the DORA process for dynamic IP assignment.",
+            icon: Server,
+            href: "/learn/application-layer/dhcp",
+            color: "text-pink-500",
         },
         {
             title: "CRC Calculator",
@@ -32,6 +60,13 @@ export default function LabsPage() {
             icon: Send,
             href: "/learn/transport-layer/tcp-handshake",
             color: "text-orange-500",
+        },
+        {
+            title: "DNS Resolver",
+            description: "Visualize the recursive DNS resolution process.",
+            icon: Globe,
+            href: "/learn/application-layer/dns",
+            color: "text-purple-500",
         },
     ]
 

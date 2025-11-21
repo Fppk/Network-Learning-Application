@@ -149,7 +149,7 @@ export function TcpHandshake() {
                             </div>
                             <div className={`flex items-center ${step >= 3 ? "text-foreground font-medium" : "opacity-50"}`}>
                                 <div className="w-6 text-center mr-2">3.</div>
-                                Client acknowledges Server's SYN. Connection Established.
+                                Client acknowledges Server&apos;s SYN. Connection Established.
                             </div>
                         </div>
                     </div>

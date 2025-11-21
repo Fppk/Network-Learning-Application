@@ -1,5 +1,6 @@
 import React from "react"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
+import { DelayCalculator } from "@/components/visualizers/delay-calculator"
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert"
 import { Info } from "lucide-react"
 
@@ -9,7 +10,7 @@ export function NetworkDelayContent() {
             <section className="space-y-4">
                 <h2 className="text-2xl font-bold">1. Transmission Delay (发送时延)</h2>
                 <p className="text-lg text-muted-foreground">
-                    The time required to push all the packet's bits into the wire.
+                    The time required to push all the packet&apos;s bits into the wire.
                 </p>
                 <Card>
                     <CardHeader>
@@ -48,6 +49,11 @@ export function NetworkDelayContent() {
                         </ul>
                     </CardContent>
                 </Card>
+            </section>
+
+            <section className="space-y-4">
+                <h3 className="text-xl font-bold">Interactive Delay Calculator</h3>
+                <DelayCalculator />
             </section>
 
             <Alert>

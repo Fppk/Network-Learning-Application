@@ -1,5 +1,6 @@
 import React from "react"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
+import { DnsResolver } from "@/components/visualizers/dns-resolver"
 
 export function DnsContent() {
     return (
@@ -11,6 +12,11 @@ export function DnsContent() {
                 </p>
             </section>
 
+            <section className="space-y-4">
+                <h3 className="text-xl font-semibold">Interactive Visualization</h3>
+                <DnsResolver />
+            </section>
+
             <section className="grid gap-6 md:grid-cols-2">
                 <Card>
                     <CardHeader>
@@ -18,7 +24,7 @@ export function DnsContent() {
                     </CardHeader>
                     <CardContent>
                         <p className="text-sm text-muted-foreground">
-                            "Hey, find this for me and don't come back until you have the answer."
+                            &quot;Hey, find this for me and don&apos;t come back until you have the answer.&quot;
                         </p>
                         <div className="mt-4 p-4 bg-slate-50 dark:bg-slate-900 rounded text-sm">
                             Client → Local DNS → Root → TLD → Auth → Local DNS → Client
@@ -31,10 +37,10 @@ export function DnsContent() {
                     </CardHeader>
                     <CardContent>
                         <p className="text-sm text-muted-foreground">
-                            "I don't know, but here is who you should ask next."
+                            &quot;I don&apos;t know, but here is who you should ask next.&quot;
                         </p>
                         <div className="mt-4 p-4 bg-slate-50 dark:bg-slate-900 rounded text-sm">
-                            Local DNS asks Root ("Go to .com") → Asks .com ("Go to google.com") → Asks Auth ("Here is the IP")
+                            Local DNS asks Root (&quot;Go to .com&quot;) → Asks .com (&quot;Go to google.com&quot;) → Asks Auth (&quot;Here is the IP&quot;)
                         </div>
                     </CardContent>
                 </Card>

@@ -48,6 +48,32 @@ export const quizData: Record<string, Question[]> = {
             explanation: "Because there is a transition in the middle of every bit, the signal frequency is effectively doubled compared to NRZ, requiring twice the bandwidth."
         }
     ],
+    "crc-check": [
+        {
+            id: 1,
+            text: "What is the purpose of the Divisor (Generator Polynomial) in CRC?",
+            options: [
+                "To encrypt the data",
+                "To compress the data",
+                "To divide the data and generate a remainder",
+                "To increase transmission speed"
+            ],
+            correctAnswer: 2,
+            explanation: "The divisor is used to perform binary division on the data. The remainder of this division becomes the CRC code appended to the data."
+        },
+        {
+            id: 2,
+            text: "If the remainder at the receiver side is non-zero, what does it imply?",
+            options: [
+                "The data is correct",
+                "The data has errors",
+                "The divisor was incorrect",
+                "The sender needs to retransmit"
+            ],
+            correctAnswer: 1,
+            explanation: "A non-zero remainder indicates that the received data is not perfectly divisible by the generator polynomial, meaning bits were altered during transmission."
+        }
+    ],
     "ip-addressing": [
         {
             id: 1,
@@ -62,6 +88,132 @@ export const quizData: Record<string, Question[]> = {
             options: ["172.32.0.1", "192.169.0.1", "10.0.0.5", "8.8.8.8"],
             correctAnswer: 2,
             explanation: "10.0.0.0/8 is a private address range defined in RFC 1918. 172.32.x.x is public (private is 172.16-31). 192.169 is public. 8.8.8.8 is public (Google DNS)."
+        }
+    ],
+    "subnetting": [
+        {
+            id: 1,
+            text: "What does CIDR stand for?",
+            options: [
+                "Classless Inter-Domain Routing",
+                "Classful Internet Domain Routing",
+                "Computer Internet Data Routing",
+                "Common IP Domain Routing"
+            ],
+            correctAnswer: 0,
+            explanation: "CIDR (Classless Inter-Domain Routing) allows for more flexible allocation of IP addresses than the original class system."
+        },
+        {
+            id: 2,
+            text: "If you borrow 3 bits for subnetting, how many subnets do you create?",
+            options: ["3", "6", "8", "9"],
+            correctAnswer: 2,
+            explanation: "The number of subnets is 2^n, where n is the number of borrowed bits. 2^3 = 8."
+        }
+    ],
+    "routing-algorithms": [
+        {
+            id: 1,
+            text: "Which algorithm is used by the RIP protocol?",
+            options: [
+                "Link State",
+                "Distance Vector",
+                "Path Vector",
+                "Flooding"
+            ],
+            correctAnswer: 1,
+            explanation: "RIP (Routing Information Protocol) uses the Distance Vector algorithm (Bellman-Ford) where routers share their knowledge of the network with neighbors."
+        },
+        {
+            id: 2,
+            text: "What is the 'Count to Infinity' problem associated with?",
+            options: [
+                "Link State Routing",
+                "Distance Vector Routing",
+                "Static Routing",
+                "OSPF"
+            ],
+            correctAnswer: 1,
+            explanation: "Count to Infinity is a routing loop problem in Distance Vector routing where incorrect routing information propagates slowly through the network."
+        }
+    ],
+    "tcp-handshake": [
+        {
+            id: 1,
+            text: "What is the first step of the TCP 3-way handshake?",
+            options: [
+                "SYN-ACK",
+                "ACK",
+                "SYN",
+                "FIN"
+            ],
+            correctAnswer: 2,
+            explanation: "The client initiates the connection by sending a SYN (Synchronize) packet to the server."
+        },
+        {
+            id: 2,
+            text: "Which flag is set to terminate a TCP connection?",
+            options: ["SYN", "RST", "FIN", "PSH"],
+            correctAnswer: 2,
+            explanation: "The FIN (Finish) flag is used to gracefully terminate a TCP connection."
+        }
+    ],
+    "ports-protocols": [
+        {
+            id: 1,
+            text: "Which port is commonly used for secure web traffic (HTTPS)?",
+            options: ["80", "22", "443", "25"],
+            correctAnswer: 2,
+            explanation: "Port 443 is the standard port for HTTPS (HTTP Secure). Port 80 is HTTP, 22 is SSH, and 25 is SMTP."
+        },
+        {
+            id: 2,
+            text: "Which protocol is connectionless and unreliable?",
+            options: ["TCP", "UDP", "HTTP", "FTP"],
+            correctAnswer: 1,
+            explanation: "UDP (User Datagram Protocol) is a connectionless protocol that does not guarantee delivery, ordering, or error checking."
+        }
+    ],
+    "dns": [
+        {
+            id: 1,
+            text: "What does a Recursive Resolver do?",
+            options: [
+                "Stores the IP address of the website permanently",
+                "Hunts down the IP address by asking other servers",
+                "Hosts the website content",
+                "Assigns IP addresses to computers"
+            ],
+            correctAnswer: 1,
+            explanation: "A Recursive Resolver is responsible for finding the IP address for a domain name by querying the Root, TLD, and Authoritative servers."
+        },
+        {
+            id: 2,
+            text: "Which record type maps a hostname to an IPv4 address?",
+            options: ["AAAA", "CNAME", "A", "MX"],
+            correctAnswer: 2,
+            explanation: "An 'A' record maps a domain name to a 32-bit IPv4 address. 'AAAA' is for IPv6."
+        }
+    ],
+    "dhcp": [
+        {
+            id: 1,
+            text: "Which message in the DORA process is a broadcast from the client?",
+            options: ["Offer", "Request", "Discover", "Acknowledge"],
+            correctAnswer: 2,
+            explanation: "The 'Discover' message is broadcast by the client to find any available DHCP servers on the network."
+        },
+        {
+            id: 2,
+            text: "What happens when a DHCP lease expires?",
+            options: [
+                "The client must stop using the IP address",
+                "The client keeps the IP forever",
+                "The server shuts down",
+                "The network stops working"
+            ],
+            correctAnswer: 0,
+            explanation: "When a lease expires and is not renewed, the client must cease using the IP address, and it returns to the pool for other devices."
         }
     ]
 }

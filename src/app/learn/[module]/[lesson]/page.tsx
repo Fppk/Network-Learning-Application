@@ -28,10 +28,10 @@ interface LessonPageProps {
 
 export function generateStaticParams() {
     const params = []
-    for (const module of curriculum) {
-        for (const lesson of module.lessons) {
+    for (const currModule of curriculum) {
+        for (const lesson of currModule.lessons) {
             params.push({
-                module: module.slug,
+                module: currModule.slug,
                 lesson: lesson.slug,
             })
         }
@@ -102,6 +102,9 @@ export default async function LessonPage({ params }: LessonPageProps) {
                 </div>
                 <h1 className="text-4xl font-bold tracking-tight mb-2">{lessonData.title}</h1>
                 <p className="text-xl text-muted-foreground">{lessonData.description}</p>
+                <div className="text-xs text-red-500 mt-2 p-2 border border-red-200 rounded bg-red-50">
+                    DEBUG: Slug: {lessonData.slug}, Quiz Available: {lessonQuiz ? "YES" : "NO"}
+                </div>
             </div>
 
             <Tabs defaultValue="learn" className="w-full mb-12">
@@ -110,7 +113,7 @@ export default async function LessonPage({ params }: LessonPageProps) {
                         <BookOpen className="mr-2 h-4 w-4" />
                         Learn
                     </TabsTrigger>
-                    <TabsTrigger value="quiz" disabled={!lessonQuiz}>
+                    <TabsTrigger value="quiz">
                         <GraduationCap className="mr-2 h-4 w-4" />
                         Quiz
                     </TabsTrigger>

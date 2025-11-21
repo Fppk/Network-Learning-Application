@@ -1,5 +1,6 @@
 import React from "react"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
+import { RoutingVisualizer } from "@/components/visualizers/routing-visualizer"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 
 export function RoutingAlgorithmsContent() {
@@ -31,7 +32,7 @@ export function RoutingAlgorithmsContent() {
                             </div>
                             <ul className="list-disc list-inside text-sm text-muted-foreground">
                                 <li><strong>Pros:</strong> Simple, Secure, No overhead.</li>
-                                <li><strong>Cons:</strong> Doesn't adapt to topology changes, hard to maintain for large networks.</li>
+                                <li><strong>Cons:</strong> Doesn&apos;t adapt to topology changes, hard to maintain for large networks.</li>
                             </ul>
                         </CardContent>
                     </Card>
@@ -63,12 +64,17 @@ export function RoutingAlgorithmsContent() {
                             <ul className="list-disc list-inside text-sm text-muted-foreground">
                                 <li><strong>Metric:</strong> Cost (Bandwidth).</li>
                                 <li><strong>Update:</strong> Triggered updates (only changes sent).</li>
-                                <li><strong>Algorithm:</strong> Dijkstra's Shortest Path.</li>
+                                <li><strong>Algorithm:</strong> Dijkstra&apos;s Shortest Path.</li>
                             </ul>
                         </CardContent>
                     </Card>
                 </TabsContent>
             </Tabs>
+
+            <section className="space-y-4">
+                <h3 className="text-xl font-bold">Interactive Routing Simulator</h3>
+                <RoutingVisualizer />
+            </section>
         </div>
     )
 }

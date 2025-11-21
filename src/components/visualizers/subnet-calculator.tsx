@@ -1,6 +1,6 @@
 "use client"
 
-import React, { useState, useEffect } from "react"
+import React, { useState, useMemo } from "react"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
@@ -11,23 +11,26 @@ export function SubnetCalculator() {
     const [ip, setIp] = useState("192.168.1.0")
     const [cidr, setCidr] = useState(24)
     const [borrowedBits, setBorrowedBits] = useState(1)
-    const [subnets, setSubnets] = useState<any[]>([])
 
-    useEffect(() => {
-        calculateSubnets()
-    }, [ip, cidr, borrowedBits])
+    const subnets = useMemo(() => {
+        const longToIp = (long: number) => {
+            return [
+                (long >>> 24) & 255,
+                (long >>> 16) & 255,
+                (long >>> 8) & 255,
+                long & 255
+            ].join(".")
+        }
 
-    const calculateSubnets = () => {
         try {
             // Basic validation
             const parts = ip.split(".").map(Number)
-            if (parts.length !== 4 || parts.some(p => isNaN(p) || p < 0 || p > 255)) return
+            if (parts.length !== 4 || parts.some(p => isNaN(p) || p < 0 || p > 255)) return []
 
             const newCidr = cidr + borrowedBits
-            if (newCidr > 30) return // Too small
+            if (newCidr > 30) return [] // Too small
 
             const numSubnets = Math.pow(2, borrowedBits)
-            const hostsPerSubnet = Math.pow(2, 32 - newCidr) - 2
             const blockSize = Math.pow(2, 32 - newCidr)
 
             const calculatedSubnets = []
@@ -55,20 +58,12 @@ export function SubnetCalculator() {
                 })
             }
 
-            setSubnets(calculatedSubnets)
+            return calculatedSubnets
         } catch (e) {
             console.error(e)
+            return []
         }
-    }
-
-    const longToIp = (long: number) => {
-        return [
-            (long >>> 24) & 255,
-            (long >>> 16) & 255,
-            (long >>> 8) & 255,
-            long & 255
-        ].join(".")
-    }
+    }, [ip, cidr, borrowedBits])
 
     return (
         <Card className="w-full max-w-4xl mx-auto">

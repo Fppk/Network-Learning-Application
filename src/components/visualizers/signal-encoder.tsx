@@ -1,6 +1,6 @@
 "use client"
 
-import React, { useState, useEffect } from "react"
+import React, { useState, useMemo } from "react"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
@@ -12,7 +12,6 @@ type EncodingType = "manchester" | "diff-manchester"
 export function SignalEncoder() {
     const [bits, setBits] = useState("1011001")
     const [encoding, setEncoding] = useState<EncodingType>("manchester")
-    const [points, setPoints] = useState<string>("")
 
     // Validate input to only allow 0s and 1s
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -20,10 +19,9 @@ export function SignalEncoder() {
         setBits(value)
     }
 
-    useEffect(() => {
+    const points = useMemo(() => {
         if (!bits) {
-            setPoints("")
-            return
+            return ""
         }
 
         let path = ""
@@ -32,8 +30,7 @@ export function SignalEncoder() {
         const baseLine = 50 // Y-coordinate of zero line
 
         // Start position
-        let currentX = 10
-        let currentLevel = -1 // -1 for low, 1 for high. Start low.
+        const currentX = 10
 
         // Initial move
         path += `M ${currentX} ${baseLine + height}`
@@ -99,7 +96,7 @@ export function SignalEncoder() {
                     currentLvl = currentLvl * -1
                 } else {
                     // 1: No transition at start -> Keep level
-                    currentLvl = currentLvl
+                    // currentLvl = currentLvl
                 }
 
                 // Draw first half
@@ -119,7 +116,7 @@ export function SignalEncoder() {
             }
         }
 
-        setPoints(path)
+        return path
     }, [bits, encoding])
 
     return (

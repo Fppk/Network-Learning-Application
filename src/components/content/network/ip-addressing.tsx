@@ -7,6 +7,8 @@ import {
     TableHeader,
     TableRow,
 } from "@/components/ui/table"
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
+import { IpVisualizer } from "@/components/visualizers/ip-visualizer"
 
 export function IpAddressingContent() {
     return (
@@ -60,6 +62,11 @@ export function IpAddressingContent() {
                         </TableBody>
                     </Table>
                 </div>
+            </section>
+
+            <section className="space-y-4">
+                <h3 className="text-xl font-bold">Interactive IP Analyzer</h3>
+                <IpVisualizer />
             </section>
 
             <section className="space-y-4">
