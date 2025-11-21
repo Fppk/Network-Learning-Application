@@ -8,7 +8,7 @@ export function NetworkDelayContent() {
     return (
         <div className="space-y-8">
             <section className="space-y-4">
-                <h2 className="text-2xl font-bold">1. Transmission Delay (发送时延)</h2>
+                <h2 className="text-2xl font-bold">1. Transmission Delay</h2>
                 <p className="text-lg text-muted-foreground">
                     The time required to push all the packet&apos;s bits into the wire.
                 </p>
@@ -30,7 +30,7 @@ export function NetworkDelayContent() {
             </section>
 
             <section className="space-y-4">
-                <h2 className="text-2xl font-bold">2. Propagation Delay (传播时延)</h2>
+                <h2 className="text-2xl font-bold">2. Propagation Delay</h2>
                 <p className="text-lg text-muted-foreground">
                     The time it takes for a bit to travel from one end of the wire to the other.
                 </p>

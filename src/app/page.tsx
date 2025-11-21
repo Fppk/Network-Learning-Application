@@ -25,7 +25,7 @@ export default function Home() {
             <Link href="/labs" className="transition-colors hover:text-primary text-muted-foreground">
               Interactive Labs
             </Link>
-            <Link href="https://github.com" target="_blank" className="transition-colors hover:text-primary text-muted-foreground">
+            <Link href="https://github.com/Fppk/Network-Learning-Application" target="_blank" className="transition-colors hover:text-primary text-muted-foreground">
               GitHub
             </Link>
           </nav>
@@ -44,22 +44,22 @@ export default function Home() {
         <section className="relative overflow-hidden pt-16 md:pt-24 lg:pt-32 pb-16">
           <div className="absolute inset-0 -z-10 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px]"></div>
           <div className="absolute left-0 right-0 top-0 -z-10 m-auto h-[310px] w-[310px] rounded-full bg-primary/20 opacity-20 blur-[100px]"></div>
-          
+
           <div className="container flex flex-col items-center text-center gap-8">
             <div className="inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 border-transparent bg-primary/10 text-primary hover:bg-primary/20">
               New: DNS Visualizer Added ✨
             </div>
-            
+
             <h1 className="font-heading text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-bold tracking-tighter bg-clip-text text-transparent bg-gradient-to-r from-foreground to-foreground/70">
               Master Networks <br className="hidden sm:inline" />
               <span className="text-primary">Visually.</span>
             </h1>
-            
+
             <p className="max-w-[42rem] leading-normal text-muted-foreground sm:text-xl sm:leading-8">
-              Experience computer networking like never before. Interactive simulations, 
+              Experience computer networking like never before. Interactive simulations,
               real-time visualizations, and deep-dive labs designed for modern learners.
             </p>
-            
+
             <div className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto">
               <Link href="/learn">
                 <Button size="lg" className="h-12 px-8 w-full sm:w-auto text-base gap-2">
@@ -105,34 +105,34 @@ export default function Home() {
               From the physical cables to the applications you use every day.
             </p>
           </div>
-          
+
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            <FeatureCard 
+            <FeatureCard
               icon={<Wifi className="h-10 w-10 text-blue-500" />}
               title="Physical Layer"
               description="Dive into signals, encoding, and transmission media. See how bits actually travel."
             />
-            <FeatureCard 
+            <FeatureCard
               icon={<Layers className="h-10 w-10 text-green-500" />}
               title="Data Link"
               description="Master framing, error detection (CRC), and MAC addressing fundamentals."
             />
-            <FeatureCard 
+            <FeatureCard
               icon={<Globe className="h-10 w-10 text-indigo-500" />}
               title="Network Layer"
               description="Explore IP addressing, subnetting, and routing algorithms in depth."
             />
-            <FeatureCard 
+            <FeatureCard
               icon={<Server className="h-10 w-10 text-orange-500" />}
               title="Transport Layer"
               description="Understand TCP/UDP, flow control, and how reliability is achieved."
             />
-            <FeatureCard 
+            <FeatureCard
               icon={<ShieldCheck className="h-10 w-10 text-red-500" />}
               title="Application Layer"
               description="Deconstruct HTTP, DNS, DHCP, and other protocols that power the web."
             />
-            <FeatureCard 
+            <FeatureCard
               icon={<Activity className="h-10 w-10 text-purple-500" />}
               title="Interactive Labs"
               description="Hands-on practice with real-time simulations and visualizers."
