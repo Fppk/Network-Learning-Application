@@ -1,44 +1,15 @@
-import Link from "next/link"
+import { Link } from "@/i18n/routing"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { ArrowRight, Network, ShieldCheck, Globe, Layers, Server, Wifi, Activity, Cpu, Zap } from "lucide-react"
+import { ArrowRight, Network, ShieldCheck, Globe, Layers, Server, Wifi, Activity } from "lucide-react"
+import { useTranslations } from "next-intl"
 
 export default function Home() {
+  const t = useTranslations("Landing")
+  const tFooter = useTranslations("Footer")
+
   return (
     <div className="flex min-h-screen flex-col bg-background">
-      <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-        <div className="container flex h-16 items-center justify-between">
-          <div className="flex items-center gap-2">
-            <Link href="/" className="flex items-center space-x-2">
-              <div className="bg-primary/10 p-2 rounded-lg">
-                <Network className="h-6 w-6 text-primary" />
-              </div>
-              <span className="hidden font-bold sm:inline-block text-xl tracking-tight">
-                NetLearn AI
-              </span>
-            </Link>
-          </div>
-          <nav className="hidden md:flex items-center space-x-8 text-sm font-medium">
-            <Link href="/learn" className="transition-colors hover:text-primary text-muted-foreground">
-              Curriculum
-            </Link>
-            <Link href="/labs" className="transition-colors hover:text-primary text-muted-foreground">
-              Interactive Labs
-            </Link>
-            <Link href="https://github.com/Fppk/Network-Learning-Application" target="_blank" className="transition-colors hover:text-primary text-muted-foreground">
-              GitHub
-            </Link>
-          </nav>
-          <div className="flex items-center gap-4">
-            <Link href="/learn">
-              <Button size="sm" className="hidden sm:flex">
-                Get Started
-              </Button>
-            </Link>
-          </div>
-        </div>
-      </header>
-
       <main className="flex-1">
         {/* Hero Section */}
         <section className="relative overflow-hidden pt-16 md:pt-24 lg:pt-32 pb-16">
@@ -51,24 +22,22 @@ export default function Home() {
             </div>
 
             <h1 className="font-heading text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-bold tracking-tighter bg-clip-text text-transparent bg-gradient-to-r from-foreground to-foreground/70">
-              Master Networks <br className="hidden sm:inline" />
-              <span className="text-primary">Visually.</span>
+              {t("heroTitle")}
             </h1>
 
             <p className="max-w-[42rem] leading-normal text-muted-foreground sm:text-xl sm:leading-8">
-              Experience computer networking like never before. Interactive simulations,
-              real-time visualizations, and deep-dive labs designed for modern learners.
+              {t("heroDescription")}
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto">
               <Link href="/learn">
                 <Button size="lg" className="h-12 px-8 w-full sm:w-auto text-base gap-2">
-                  Start Learning <ArrowRight className="h-4 w-4" />
+                  {t("startLearning")} <ArrowRight className="h-4 w-4" />
                 </Button>
               </Link>
               <Link href="/labs">
                 <Button variant="outline" size="lg" className="h-12 px-8 w-full sm:w-auto text-base">
-                  Try a Lab
+                  {t("exploreLabs")}
                 </Button>
               </Link>
             </div>
@@ -99,7 +68,7 @@ export default function Home() {
         <section id="features" className="container py-12 md:py-24 lg:py-32">
           <div className="flex flex-col items-center gap-4 text-center mb-16">
             <h2 className="font-heading text-3xl leading-[1.1] sm:text-3xl md:text-5xl font-bold">
-              The Full Stack Journey
+              {t("features")}
             </h2>
             <p className="max-w-[85%] leading-normal text-muted-foreground sm:text-lg sm:leading-7">
               From the physical cables to the applications you use every day.
@@ -109,33 +78,33 @@ export default function Home() {
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             <FeatureCard
               icon={<Wifi className="h-10 w-10 text-blue-500" />}
-              title="Physical Layer"
-              description="Dive into signals, encoding, and transmission media. See how bits actually travel."
-            />
-            <FeatureCard
-              icon={<Layers className="h-10 w-10 text-green-500" />}
-              title="Data Link"
-              description="Master framing, error detection (CRC), and MAC addressing fundamentals."
-            />
-            <FeatureCard
-              icon={<Globe className="h-10 w-10 text-indigo-500" />}
-              title="Network Layer"
-              description="Explore IP addressing, subnetting, and routing algorithms in depth."
-            />
-            <FeatureCard
-              icon={<Server className="h-10 w-10 text-orange-500" />}
-              title="Transport Layer"
-              description="Understand TCP/UDP, flow control, and how reliability is achieved."
-            />
-            <FeatureCard
-              icon={<ShieldCheck className="h-10 w-10 text-red-500" />}
-              title="Application Layer"
-              description="Deconstruct HTTP, DNS, DHCP, and other protocols that power the web."
+              title={t("feature1Title")}
+              description={t("feature1Desc")}
             />
             <FeatureCard
               icon={<Activity className="h-10 w-10 text-purple-500" />}
-              title="Interactive Labs"
-              description="Hands-on practice with real-time simulations and visualizers."
+              title={t("feature2Title")}
+              description={t("feature2Desc")}
+            />
+            <FeatureCard
+              icon={<Globe className="h-10 w-10 text-indigo-500" />}
+              title={t("feature3Title")}
+              description={t("feature3Desc")}
+            />
+            <FeatureCard
+              icon={<Layers className="h-10 w-10 text-green-500" />}
+              title={t("feature4Title")}
+              description={t("feature4Desc")}
+            />
+            <FeatureCard
+              icon={<Server className="h-10 w-10 text-orange-500" />}
+              title={t("feature5Title")}
+              description={t("feature5Desc")}
+            />
+            <FeatureCard
+              icon={<ShieldCheck className="h-10 w-10 text-red-500" />}
+              title={t("feature6Title")}
+              description={t("feature6Desc")}
             />
           </div>
         </section>
@@ -146,15 +115,14 @@ export default function Home() {
             <div className="absolute inset-0 -z-10 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px]"></div>
             <div className="flex flex-col items-center text-center gap-6">
               <h2 className="font-heading text-3xl md:text-4xl font-bold">
-                Ready to start your journey?
+                {t("ctaTitle")}
               </h2>
               <p className="text-muted-foreground text-lg max-w-2xl">
-                Join thousands of students mastering computer networks through visualization.
-                No sign-up required.
+                {t("ctaDesc")}
               </p>
               <Link href="/learn">
                 <Button size="lg" className="h-12 px-8 text-base">
-                  Start Learning Now
+                  {t("startLearning")}
                 </Button>
               </Link>
             </div>
@@ -165,34 +133,34 @@ export default function Home() {
       <footer className="border-t py-12 bg-muted/30">
         <div className="container flex flex-col md:flex-row justify-between gap-8">
           <div className="flex flex-col gap-4">
-            <Link href="/" className="flex items-center space-x-2">
+            <div className="flex items-center space-x-2">
               <Network className="h-6 w-6 text-primary" />
               <span className="font-bold">NetLearn AI</span>
-            </Link>
+            </div>
             <p className="text-sm text-muted-foreground max-w-xs">
-              An open-source interactive learning platform for computer networking fundamentals.
+              {tFooter("description")}
             </p>
           </div>
           <div className="grid grid-cols-2 gap-12 sm:grid-cols-3">
             <div className="flex flex-col gap-2">
-              <h3 className="font-semibold">Learn</h3>
-              <Link href="/learn" className="text-sm text-muted-foreground hover:text-foreground">Curriculum</Link>
-              <Link href="/labs" className="text-sm text-muted-foreground hover:text-foreground">Labs</Link>
+              <h3 className="font-semibold">{tFooter("learn")}</h3>
+              <Link href="/learn" className="text-sm text-muted-foreground hover:text-foreground">{tFooter("curriculum")}</Link>
+              <Link href="/labs" className="text-sm text-muted-foreground hover:text-foreground">{tFooter("labs")}</Link>
             </div>
             <div className="flex flex-col gap-2">
-              <h3 className="font-semibold">Project</h3>
+              <h3 className="font-semibold">{tFooter("project")}</h3>
               <Link href="https://github.com" className="text-sm text-muted-foreground hover:text-foreground">GitHub</Link>
-              <Link href="#" className="text-sm text-muted-foreground hover:text-foreground">About</Link>
+              <Link href="#" className="text-sm text-muted-foreground hover:text-foreground">{tFooter("about")}</Link>
             </div>
             <div className="flex flex-col gap-2">
-              <h3 className="font-semibold">Legal</h3>
-              <Link href="#" className="text-sm text-muted-foreground hover:text-foreground">Privacy</Link>
-              <Link href="#" className="text-sm text-muted-foreground hover:text-foreground">Terms</Link>
+              <h3 className="font-semibold">{tFooter("legal")}</h3>
+              <Link href="#" className="text-sm text-muted-foreground hover:text-foreground">{tFooter("privacy")}</Link>
+              <Link href="#" className="text-sm text-muted-foreground hover:text-foreground">{tFooter("terms")}</Link>
             </div>
           </div>
         </div>
         <div className="container mt-12 pt-8 border-t text-center text-sm text-muted-foreground">
-          © 2024 NetLearn AI. All rights reserved.
+          {tFooter("rights")}
         </div>
       </footer>
     </div>

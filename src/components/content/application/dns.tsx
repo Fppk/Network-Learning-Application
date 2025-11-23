@@ -1,46 +1,49 @@
 import React from "react"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { DnsResolver } from "@/components/visualizers/dns-resolver"
+import { useTranslations } from "next-intl"
 
 export function DnsContent() {
+    const t = useTranslations("Dns")
+
     return (
         <div className="space-y-8">
             <section className="space-y-4">
-                <h2 className="text-2xl font-bold">Domain Name System (DNS)</h2>
+                <h2 className="text-2xl font-bold">{t("title")}</h2>
                 <p className="text-lg text-muted-foreground">
-                    The phonebook of the internet. Translates human-readable domain names (google.com) to IP addresses (142.250.191.196).
+                    {t("description")}
                 </p>
             </section>
 
             <section className="space-y-4">
-                <h3 className="text-xl font-semibold">Interactive Visualization</h3>
+                <h3 className="text-xl font-semibold">{t("vizTitle")}</h3>
                 <DnsResolver />
             </section>
 
             <section className="grid gap-6 md:grid-cols-2">
                 <Card>
                     <CardHeader>
-                        <CardTitle>Recursive Query</CardTitle>
+                        <CardTitle>{t("recursiveTitle")}</CardTitle>
                     </CardHeader>
                     <CardContent>
                         <p className="text-sm text-muted-foreground">
-                            &quot;Hey, find this for me and don&apos;t come back until you have the answer.&quot;
+                            {t("recursiveQuote")}
                         </p>
                         <div className="mt-4 p-4 bg-slate-50 dark:bg-slate-900 rounded text-sm">
-                            Client → Local DNS → Root → TLD → Auth → Local DNS → Client
+                            {t("recursiveFlow")}
                         </div>
                     </CardContent>
                 </Card>
                 <Card>
                     <CardHeader>
-                        <CardTitle>Iterative Query</CardTitle>
+                        <CardTitle>{t("iterativeTitle")}</CardTitle>
                     </CardHeader>
                     <CardContent>
                         <p className="text-sm text-muted-foreground">
-                            &quot;I don&apos;t know, but here is who you should ask next.&quot;
+                            {t("iterativeQuote")}
                         </p>
                         <div className="mt-4 p-4 bg-slate-50 dark:bg-slate-900 rounded text-sm">
-                            Local DNS asks Root (&quot;Go to .com&quot;) → Asks .com (&quot;Go to google.com&quot;) → Asks Auth (&quot;Here is the IP&quot;)
+                            {t("iterativeFlow")}
                         </div>
                     </CardContent>
                 </Card>

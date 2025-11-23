@@ -1,11 +1,12 @@
 import { notFound } from "next/navigation"
 import { curriculum } from "@/lib/curriculum"
 import { Button } from "@/components/ui/button"
-import Link from "next/link"
+import { Link } from "@/i18n/routing"
 import { ChevronLeft, ChevronRight, CheckCircle2, BookOpen, GraduationCap } from "lucide-react"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Quiz } from "@/components/quiz/quiz"
 import { quizData } from "@/lib/quiz-data"
+import { getTranslations } from "next-intl/server"
 
 // Content Components
 import { NetworkDelayContent } from "@/components/content/intro/network-delay"
@@ -23,6 +24,7 @@ interface LessonPageProps {
     params: Promise<{
         module: string
         lesson: string
+        locale: string
     }>
 }
 
@@ -47,6 +49,9 @@ export default async function LessonPage({ params }: LessonPageProps) {
     if (!moduleData || !lessonData) {
         notFound()
     }
+
+    const t = await getTranslations("Curriculum")
+    const tCommon = await getTranslations("Common")
 
     // Find next and previous lessons
     const allLessons = curriculum.flatMap((m) =>
@@ -86,7 +91,7 @@ export default async function LessonPage({ params }: LessonPageProps) {
             default:
                 return (
                     <div className="p-12 border rounded-lg bg-muted/50 text-center">
-                        <p className="text-muted-foreground">Interactive content for <strong>{lessonData.title}</strong> is coming soon.</p>
+                        <p className="text-muted-foreground">Interactive content for <strong>{t(`${lessonData.slug}.title`)}</strong> is coming soon.</p>
                     </div>
                 )
         }
@@ -96,24 +101,21 @@ export default async function LessonPage({ params }: LessonPageProps) {
         <div className="container max-w-4xl py-10">
             <div className="mb-8">
                 <div className="mb-4 text-sm text-muted-foreground">
-                    <Link href="/learn" className="hover:underline">Curriculum</Link>
+                    <Link href="/learn" className="hover:underline">{tCommon("curriculum")}</Link>
                     {" > "}
-                    <span>{moduleData.title}</span>
+                    <span>{t(`${moduleData.slug}.title`)}</span>
                 </div>
-                <h1 className="text-4xl font-bold tracking-tight mb-2">{lessonData.title}</h1>
-                <p className="text-xl text-muted-foreground">{lessonData.description}</p>
-                <div className="text-xs text-red-500 mt-2 p-2 border border-red-200 rounded bg-red-50">
-                    DEBUG: Slug: {lessonData.slug}, Quiz Available: {lessonQuiz ? "YES" : "NO"}
-                </div>
+                <h1 className="text-4xl font-bold tracking-tight mb-2">{t(`${lessonData.slug}.title`)}</h1>
+                <p className="text-xl text-muted-foreground">{t(`${lessonData.slug}.description`)}</p>
             </div>
 
             <Tabs defaultValue="learn" className="w-full mb-12">
                 <TabsList className="grid w-full grid-cols-2 max-w-[400px]">
                     <TabsTrigger value="learn">
                         <BookOpen className="mr-2 h-4 w-4" />
-                        Learn
+                        {tCommon("learn")}
                     </TabsTrigger>
-                    <TabsTrigger value="quiz">
+                    <TabsTrigger value="quiz" disabled={!lessonQuiz}>
                         <GraduationCap className="mr-2 h-4 w-4" />
                         Quiz
                     </TabsTrigger>
@@ -141,7 +143,7 @@ export default async function LessonPage({ params }: LessonPageProps) {
                     <Link href={`/learn/${prevLesson.moduleSlug}/${prevLesson.slug}`}>
                         <Button variant="outline">
                             <ChevronLeft className="mr-2 h-4 w-4" />
-                            {prevLesson.title}
+                            {t(`${prevLesson.slug}.title`)}
                         </Button>
                     </Link>
                 ) : (
@@ -150,14 +152,14 @@ export default async function LessonPage({ params }: LessonPageProps) {
                 {nextLesson ? (
                     <Link href={`/learn/${nextLesson.moduleSlug}/${nextLesson.slug}`}>
                         <Button>
-                            {nextLesson.title}
+                            {t(`${nextLesson.slug}.title`)}
                             <ChevronRight className="ml-2 h-4 w-4" />
                         </Button>
                     </Link>
                 ) : (
                     <Link href="/learn">
                         <Button variant="default">
-                            Complete Course
+                            {tCommon("complete")}
                             <CheckCircle2 className="ml-2 h-4 w-4" />
                         </Button>
                     </Link>

@@ -6,10 +6,12 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
 import { motion } from "framer-motion"
+import { useTranslations } from "next-intl"
 
 type EncodingType = "manchester" | "diff-manchester"
 
 export function SignalEncoder() {
+    const t = useTranslations("SignalEncoder")
     const [bits, setBits] = useState("1011001")
     const [encoding, setEncoding] = useState<EncodingType>("manchester")
 
@@ -122,19 +124,19 @@ export function SignalEncoder() {
     return (
         <Card className="w-full max-w-3xl mx-auto">
             <CardHeader>
-                <CardTitle>Digital Signal Encoder</CardTitle>
+                <CardTitle>{t("title")}</CardTitle>
                 <CardDescription>
-                    Visualize how bits are converted into electrical signals.
+                    {t("description")}
                 </CardDescription>
             </CardHeader>
             <CardContent className="space-y-6">
                 <div className="space-y-2">
-                    <Label htmlFor="bits">Binary Input</Label>
+                    <Label htmlFor="bits">{t("binaryInput")}</Label>
                     <Input
                         id="bits"
                         value={bits}
                         onChange={handleInputChange}
-                        placeholder="Enter 0s and 1s (e.g., 10110)"
+                        placeholder={t("placeholder")}
                         className="font-mono text-lg tracking-widest"
                         maxLength={16}
                     />
@@ -147,11 +149,11 @@ export function SignalEncoder() {
                 >
                     <div className="flex items-center space-x-2">
                         <RadioGroupItem value="manchester" id="manchester" />
-                        <Label htmlFor="manchester">Manchester</Label>
+                        <Label htmlFor="manchester">{t("manchester")}</Label>
                     </div>
                     <div className="flex items-center space-x-2">
                         <RadioGroupItem value="diff-manchester" id="diff-manchester" />
-                        <Label htmlFor="diff-manchester">Differential Manchester</Label>
+                        <Label htmlFor="diff-manchester">{t("diffManchester")}</Label>
                     </div>
                 </RadioGroup>
 
@@ -201,18 +203,18 @@ export function SignalEncoder() {
                 </div>
 
                 <div className="rounded-md bg-muted p-4 text-sm">
-                    <h4 className="font-semibold mb-2">How it works:</h4>
+                    <h4 className="font-semibold mb-2">{t("howItWorks")}</h4>
                     {encoding === "manchester" ? (
                         <ul className="list-disc list-inside space-y-1">
-                            <li><strong>1</strong>: Transition from Low to High in the middle.</li>
-                            <li><strong>0</strong>: Transition from High to Low in the middle.</li>
-                            <li>The mid-bit transition provides clock synchronization.</li>
+                            <li><strong>1</strong>: {t("manchesterRule1")}</li>
+                            <li><strong>0</strong>: {t("manchesterRule2")}</li>
+                            <li>{t("manchesterRule3")}</li>
                         </ul>
                     ) : (
                         <ul className="list-disc list-inside space-y-1">
-                            <li><strong>Transition in middle</strong>: Always happens (for clock).</li>
-                            <li><strong>0</strong>: Transition at the start of the bit period.</li>
-                            <li><strong>1</strong>: No transition at the start of the bit period.</li>
+                            <li><strong>{t("diffRule1")}</strong></li>
+                            <li><strong>0</strong>: {t("diffRule2")}</li>
+                            <li><strong>1</strong>: {t("diffRule3")}</li>
                         </ul>
                     )}
                 </div>

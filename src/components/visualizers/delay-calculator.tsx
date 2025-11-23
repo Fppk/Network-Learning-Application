@@ -5,9 +5,11 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Slider } from "@/components/ui/slider"
+import { useTranslations } from "next-intl"
 
 
 export function DelayCalculator() {
+    const t = useTranslations("DelayCalculator")
     const [fileSize, setFileSize] = useState(10) // MB
     const [bandwidth, setBandwidth] = useState(100) // Mbps
     const [distance, setDistance] = useState(1000) // km
@@ -17,7 +19,7 @@ export function DelayCalculator() {
         // Transmission Delay = L / R
         // L (bits) = fileSize * 8 * 10^6
         // R (bits/sec) = bandwidth * 10^6
-        const L = fileSize * 8 * 1000000
+        const L = fileSize * 8 * 1024 * 1024
         const R = bandwidth * 1000000
         const transmissionDelay = (L / R) // seconds
 
@@ -40,16 +42,16 @@ export function DelayCalculator() {
     return (
         <Card className="w-full max-w-3xl mx-auto">
             <CardHeader>
-                <CardTitle>Network Delay Calculator</CardTitle>
+                <CardTitle>{t("title")}</CardTitle>
                 <CardDescription>
-                    Calculate and visualize Transmission vs. Propagation delay.
+                    {t("description")}
                 </CardDescription>
             </CardHeader>
             <CardContent className="space-y-8">
                 <div className="grid gap-6 sm:grid-cols-2">
                     <div className="space-y-4">
                         <div className="space-y-2">
-                            <Label>File Size (MB)</Label>
+                            <Label>{t("fileSize")}</Label>
                             <div className="flex items-center gap-4">
                                 <Slider
                                     min={1}
@@ -69,7 +71,7 @@ export function DelayCalculator() {
                         </div>
 
                         <div className="space-y-2">
-                            <Label>Bandwidth (Mbps)</Label>
+                            <Label>{t("bandwidth")}</Label>
                             <div className="flex items-center gap-4">
                                 <Slider
                                     min={1}
@@ -91,7 +93,7 @@ export function DelayCalculator() {
 
                     <div className="space-y-4">
                         <div className="space-y-2">
-                            <Label>Distance (km)</Label>
+                            <Label>{t("distance")}</Label>
                             <div className="flex items-center gap-4">
                                 <Slider
                                     min={1}
@@ -111,15 +113,15 @@ export function DelayCalculator() {
                         </div>
 
                         <div className="space-y-2">
-                            <Label>Medium (Speed)</Label>
+                            <Label>{t("medium")}</Label>
                             <select
                                 className="flex h-10 w-full items-center justify-between rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
                                 value={speedOfLight}
                                 onChange={(e) => setSpeedOfLight(Number(e.target.value))}
                             >
-                                <option value="200000">Fiber Optic (200,000 km/s)</option>
-                                <option value="300000">Vacuum/Air (300,000 km/s)</option>
-                                <option value="177000">Copper (177,000 km/s)</option>
+                                <option value="200000">{t("fiber")}</option>
+                                <option value="300000">{t("vacuum")}</option>
+                                <option value="177000">{t("copper")}</option>
                             </select>
                         </div>
                     </div>
@@ -127,31 +129,31 @@ export function DelayCalculator() {
 
                 <div className="grid grid-cols-3 gap-4 text-center">
                     <div className="p-4 rounded-lg bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800">
-                        <div className="text-sm text-muted-foreground mb-1">Transmission Delay</div>
+                        <div className="text-sm text-muted-foreground mb-1">{t("transmissionDelay")}</div>
                         <div className="text-2xl font-bold text-blue-600 dark:text-blue-400">
                             {results.transmission.toFixed(2)} ms
                         </div>
-                        <div className="text-xs text-muted-foreground mt-1">Pushing bits onto link</div>
+                        <div className="text-xs text-muted-foreground mt-1">{t("pushingBits")}</div>
                     </div>
                     <div className="p-4 rounded-lg bg-orange-50 dark:bg-orange-900/20 border border-orange-200 dark:border-orange-800">
-                        <div className="text-sm text-muted-foreground mb-1">Propagation Delay</div>
+                        <div className="text-sm text-muted-foreground mb-1">{t("propagationDelay")}</div>
                         <div className="text-2xl font-bold text-orange-600 dark:text-orange-400">
                             {results.propagation.toFixed(2)} ms
                         </div>
-                        <div className="text-xs text-muted-foreground mt-1">Traveling across link</div>
+                        <div className="text-xs text-muted-foreground mt-1">{t("traveling")}</div>
                     </div>
                     <div className="p-4 rounded-lg bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800">
-                        <div className="text-sm text-muted-foreground mb-1">Total Delay</div>
+                        <div className="text-sm text-muted-foreground mb-1">{t("totalDelay")}</div>
                         <div className="text-2xl font-bold text-green-600 dark:text-green-400">
                             {results.total.toFixed(2)} ms
                         </div>
-                        <div className="text-xs text-muted-foreground mt-1">One-way latency</div>
+                        <div className="text-xs text-muted-foreground mt-1">{t("oneWayLatency")}</div>
                     </div>
                 </div>
 
                 {/* Visual Bar Chart */}
                 <div className="space-y-2">
-                    <div className="text-sm font-medium">Delay Composition</div>
+                    <div className="text-sm font-medium">{t("delayComposition")}</div>
                     <div className="h-8 w-full rounded-full bg-muted overflow-hidden flex">
                         <div
                             className="bg-blue-500 h-full transition-all duration-500"
@@ -165,11 +167,11 @@ export function DelayCalculator() {
                     <div className="flex justify-between text-xs text-muted-foreground">
                         <div className="flex items-center gap-2">
                             <div className="w-3 h-3 rounded-full bg-blue-500" />
-                            Transmission
+                            {t("transmission")}
                         </div>
                         <div className="flex items-center gap-2">
                             <div className="w-3 h-3 rounded-full bg-orange-500" />
-                            Propagation
+                            {t("propagation")}
                         </div>
                     </div>
                 </div>

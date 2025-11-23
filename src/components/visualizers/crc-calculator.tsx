@@ -6,12 +6,14 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Button } from "@/components/ui/button"
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert"
-import { ArrowDown, CheckCircle2, XCircle } from "lucide-react"
+import { ArrowDown, CheckCircle2 } from "lucide-react"
+
+import { useTranslations } from "next-intl"
 
 export function CrcCalculator() {
+    const t = useTranslations("CrcCalculator")
     const [data, setData] = useState("1011001")
     const [generator, setGenerator] = useState("11011")
-    const [steps, setSteps] = useState<string[]>([])
     const [result, setResult] = useState<{ crc: string; transmitted: string } | null>(null)
 
     const handleCalculate = () => {
@@ -30,8 +32,7 @@ export function CrcCalculator() {
         for (let i = 0; i <= workingData.length - g.length; i++) {
             // If the leading bit is 1, perform XOR
             if (workingData[i] === 1) {
-                const stepDisplay = workingData.join("").substring(0, i + g.length) + "..."
-                calculationSteps.push(`Step ${i + 1}: Match at index ${i}`)
+                calculationSteps.push(t("stepMatch", { step: i + 1, index: i }))
 
                 for (let j = 0; j < g.length; j++) {
                     workingData[i + j] = workingData[i + j] ^ g[j]
@@ -42,22 +43,23 @@ export function CrcCalculator() {
         const remainder = workingData.slice(-r).join("")
         const transmitted = data + remainder
 
-        setSteps(calculationSteps)
+
+
         setResult({ crc: remainder, transmitted })
     }
 
     return (
         <Card className="w-full max-w-3xl mx-auto">
             <CardHeader>
-                <CardTitle>CRC Calculator (Cyclic Redundancy Check)</CardTitle>
+                <CardTitle>{t("title")}</CardTitle>
                 <CardDescription>
-                    Visualize the Modulo-2 division used to generate error detection codes.
+                    {t("description")}
                 </CardDescription>
             </CardHeader>
             <CardContent className="space-y-6">
                 <div className="grid gap-4 sm:grid-cols-2">
                     <div className="space-y-2">
-                        <Label htmlFor="data">Data Bits (M)</Label>
+                        <Label htmlFor="data">{t("dataBits")}</Label>
                         <Input
                             id="data"
                             value={data}
@@ -67,7 +69,7 @@ export function CrcCalculator() {
                         />
                     </div>
                     <div className="space-y-2">
-                        <Label htmlFor="generator">Generator Polynomial (G)</Label>
+                        <Label htmlFor="generator">{t("generator")}</Label>
                         <Input
                             id="generator"
                             value={generator}
@@ -79,23 +81,23 @@ export function CrcCalculator() {
                 </div>
 
                 <Button onClick={handleCalculate} className="w-full">
-                    Calculate CRC
+                    {t("calculate")}
                 </Button>
 
                 {result && (
                     <div className="space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-500">
                         <div className="rounded-lg border bg-slate-50 dark:bg-slate-900 p-4 font-mono text-sm overflow-x-auto">
                             <div className="min-w-[300px]">
-                                <div className="mb-2 text-muted-foreground">Division Process:</div>
+                                <div className="mb-2 text-muted-foreground">{t("divisionProcess")}</div>
                                 {/* Visualizing the division is tricky in text, let's show the key parameters */}
                                 <div className="grid grid-cols-[100px_1fr] gap-2">
-                                    <div className="text-right font-bold">Data:</div>
+                                    <div className="text-right font-bold">{t("data")}</div>
                                     <div>{data}</div>
-                                    <div className="text-right font-bold">Zeros Added:</div>
+                                    <div className="text-right font-bold">{t("zerosAdded")}</div>
                                     <div>{generator.length - 1}</div>
-                                    <div className="text-right font-bold">Dividend:</div>
+                                    <div className="text-right font-bold">{t("dividend")}</div>
                                     <div>{data}{"0".repeat(generator.length - 1)}</div>
-                                    <div className="text-right font-bold">Divisor:</div>
+                                    <div className="text-right font-bold">{t("divisor")}</div>
                                     <div>{generator}</div>
                                 </div>
 
@@ -103,22 +105,22 @@ export function CrcCalculator() {
 
                                 <div className="flex items-center space-x-2 text-green-600 dark:text-green-400">
                                     <ArrowDown className="h-4 w-4" />
-                                    <span>Remainder (FCS): <strong>{result.crc}</strong></span>
+                                    <span>{t("remainder")} <strong>{result.crc}</strong></span>
                                 </div>
                             </div>
                         </div>
 
                         <Alert>
                             <CheckCircle2 className="h-4 w-4" />
-                            <AlertTitle>Result</AlertTitle>
+                            <AlertTitle>{t("result")}</AlertTitle>
                             <AlertDescription className="mt-2">
                                 <div className="grid gap-2 text-sm">
                                     <div className="flex justify-between">
-                                        <span>Calculated CRC (FCS):</span>
+                                        <span>{t("calculatedCrc")}</span>
                                         <span className="font-mono font-bold">{result.crc}</span>
                                     </div>
                                     <div className="flex justify-between border-t pt-2">
-                                        <span>Final Transmitted Frame:</span>
+                                        <span>{t("finalFrame")}</span>
                                         <span className="font-mono font-bold">
                                             {data}<span className="text-green-600 dark:text-green-400">{result.crc}</span>
                                         </span>

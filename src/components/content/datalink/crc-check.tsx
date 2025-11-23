@@ -1,31 +1,34 @@
 import React from "react"
 import { CrcCalculator } from "@/components/visualizers/crc-calculator"
+import { useTranslations } from "next-intl"
 
 export function CrcCheckContent() {
+    const t = useTranslations("CrcCheck")
+
     return (
         <div className="space-y-8">
             <section className="space-y-4">
-                <h2 className="text-2xl font-bold">Cyclic Redundancy Check (CRC)</h2>
+                <h2 className="text-2xl font-bold">{t("title")}</h2>
                 <p className="text-lg text-muted-foreground">
-                    An error-detecting code commonly used in digital networks to detect accidental changes to raw data.
+                    {t("description")}
                 </p>
 
                 <div className="grid gap-6 md:grid-cols-2">
                     <div className="p-4 border rounded-lg">
-                        <h3 className="font-semibold mb-2">Key Concepts</h3>
+                        <h3 className="font-semibold mb-2">{t("concepts")}</h3>
                         <ul className="list-disc list-inside space-y-1 text-sm">
-                            <li><strong>Message (M):</strong> The data to be sent.</li>
-                            <li><strong>Generator (G):</strong> A shared polynomial divisor.</li>
-                            <li><strong>FCS (R):</strong> The remainder (Frame Check Sequence).</li>
+                            <li><strong>{t("message")}:</strong> {t("messageDesc")}</li>
+                            <li><strong>{t("generator")}:</strong> {t("generatorDesc")}</li>
+                            <li><strong>{t("fcs")}:</strong> {t("fcsDesc")}</li>
                         </ul>
                     </div>
                     <div className="p-4 border rounded-lg">
-                        <h3 className="font-semibold mb-2">The Algorithm</h3>
+                        <h3 className="font-semibold mb-2">{t("algorithm")}</h3>
                         <ol className="list-decimal list-inside space-y-1 text-sm">
-                            <li>Append <em>r</em> zeros to Message, where <em>r</em> is degree of G.</li>
-                            <li>Divide (XOR) the new Message by G.</li>
-                            <li>The remainder is the FCS.</li>
-                            <li>Transmit Message + FCS.</li>
+                            <li>{t("step1")}</li>
+                            <li>{t("step2")}</li>
+                            <li>{t("step3")}</li>
+                            <li>{t("step4")}</li>
                         </ol>
                     </div>
                 </div>

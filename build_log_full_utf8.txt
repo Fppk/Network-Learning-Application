@@ -1,0 +1,81 @@
+﻿
+> network-learning-app@0.1.0 build
+> next build
+
+ 鈿?Warning: Next.js inferred your workspace root, but it may not be correct.
+ We detected multiple lockfiles and selected the directory of C:\Users\linei\package-lock.json as the root directory.
+ To silence this warning, set `turbopack.root` in your Next.js config, or consider removing one of the lockfiles if it's not needed.
+   See https://nextjs.org/docs/app/api-reference/config/next-config-js/turbopack#root-directory for more information.
+ Detected additional lockfiles: 
+   * C:\Users\linei\Documents\antigravity\network-learning-app\package-lock.json
+
+   鈻?Next.js 16.0.3 (Turbopack)
+
+ 鈿?The "middleware" file convention is deprecated. Please use "proxy" instead. Learn more: https://nextjs.org/docs/messages/middleware-to-proxy
+   Creating an optimized production build ...
+
+> Build error occurred
+Error: Turbopack build failed with 2 errors:
+./Documents/antigravity/network-learning-app/messages/en.json
+Code generation for chunk item errored
+An error occurred while generating the chunk item [project]/Documents/antigravity/network-learning-app/messages/en.json (json)
+
+Caused by:
+- Unable to make a module from invalid JSON: EOF while parsing an object at line 414 column 5
+
+Debug info:
+- An error occurred while generating the chunk item [project]/Documents/antigravity/network-learning-app/messages/en.json (json)
+- Execution of <JsonChunkItem as EcmascriptChunkItem>::content failed
+- Unable to make a module from invalid JSON: EOF while parsing an object at line 414 column 5
+    at ?
+     410 |             "privacy": "Privacy",
+     411 |             "terms": "Terms",
+     412 |             "rights": "漏 2024 NetLearn AI. All rights reserved."
+     413 |         }
+         |     v
+     414 +     }
+         |     ^
+
+Import trace:
+  Server Component:
+    ./Documents/antigravity/network-learning-app/messages/en.json
+    ./Documents/antigravity/network-learning-app/src/i18n/request.ts
+    ./Documents/antigravity/network-learning-app/node_modules/next-intl/dist/esm/production/server/react-server/getConfig.js
+    ./Documents/antigravity/network-learning-app/node_modules/next-intl/dist/esm/production/react-server/useConfig.js
+    ./Documents/antigravity/network-learning-app/node_modules/next-intl/dist/esm/production/react-server/useTranslations.js
+    ./Documents/antigravity/network-learning-app/src/components/content/network/ip-addressing.tsx
+    ./Documents/antigravity/network-learning-app/src/app/[locale]/learn/[module]/[lesson]/page.tsx
+
+
+./Documents/antigravity/network-learning-app/messages/zh.json
+Code generation for chunk item errored
+An error occurred while generating the chunk item [project]/Documents/antigravity/network-learning-app/messages/zh.json (json)
+
+Caused by:
+- Unable to make a module from invalid JSON: EOF while parsing an object at line 439 column 5
+
+Debug info:
+- An error occurred while generating the chunk item [project]/Documents/antigravity/network-learning-app/messages/zh.json (json)
+- Execution of <JsonChunkItem as EcmascriptChunkItem>::content failed
+- Unable to make a module from invalid JSON: EOF while parsing an object at line 439 column 5
+    at ?
+     435 |             "privacy": "闅愮",
+     436 |             "terms": "鏉℃",
+     437 |             "rights": "漏 2024 NetLearn AI. 淇濈暀鎵€鏈夋潈鍒┿€?
+     438 |         }
+         |     v
+     439 +     }
+         |     ^
+
+Import trace:
+  Server Component:
+    ./Documents/antigravity/network-learning-app/messages/zh.json
+    ./Documents/antigravity/network-learning-app/src/i18n/request.ts
+    ./Documents/antigravity/network-learning-app/node_modules/next-intl/dist/esm/production/server/react-server/getConfig.js
+    ./Documents/antigravity/network-learning-app/node_modules/next-intl/dist/esm/production/react-server/useConfig.js
+    ./Documents/antigravity/network-learning-app/node_modules/next-intl/dist/esm/production/react-server/useTranslations.js
+    ./Documents/antigravity/network-learning-app/src/components/content/network/ip-addressing.tsx
+    ./Documents/antigravity/network-learning-app/src/app/[locale]/learn/[module]/[lesson]/page.tsx
+
+
+    at ignore-listed frames

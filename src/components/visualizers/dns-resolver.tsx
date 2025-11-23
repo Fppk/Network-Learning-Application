@@ -1,11 +1,12 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { useState, useEffect, useMemo } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Globe, Server, Search, Database, ArrowRight, CheckCircle2, XCircle } from "lucide-react"
+import { Globe, Server, Database, Search, RefreshCw } from "lucide-react"
+import { useTranslations } from "next-intl"
 
 type Step = {
     id: number
@@ -16,68 +17,69 @@ type Step = {
     status: "pending" | "active" | "completed"
 }
 
-const steps: Step[] = [
-    {
-        id: 1,
-        title: "Browser Cache Check",
-        description: "Browser checks if the IP is already cached locally.",
-        source: "Client",
-        destination: "Local Cache",
-        status: "pending",
-    },
-    {
-        id: 2,
-        title: "Recursive Resolver",
-        description: "Request sent to ISP's Recursive Resolver (e.g., 8.8.8.8).",
-        source: "Client",
-        destination: "Recursive Resolver",
-        status: "pending",
-    },
-    {
-        id: 3,
-        title: "Root Server Query",
-        description: "Resolver asks Root Server: 'Where is .com?'",
-        source: "Recursive Resolver",
-        destination: "Root Server",
-        status: "pending",
-    },
-    {
-        id: 4,
-        title: "TLD Server Query",
-        description: "Resolver asks TLD Server: 'Where is example.com?'",
-        source: "Recursive Resolver",
-        destination: "TLD Server",
-        status: "pending",
-    },
-    {
-        id: 5,
-        title: "Authoritative Server Query",
-        description: "Resolver asks Authoritative Server for the specific IP.",
-        source: "Recursive Resolver",
-        destination: "Authoritative Server",
-        status: "pending",
-    },
-    {
-        id: 6,
-        title: "Resolution Complete",
-        description: "IP address returned to the client.",
-        source: "Recursive Resolver",
-        destination: "Client",
-        status: "pending",
-    },
-]
-
 export function DnsResolver() {
+    const t = useTranslations("DnsResolver")
     const [domain, setDomain] = useState("example.com")
     const [isResolving, setIsResolving] = useState(false)
     const [currentStep, setCurrentStep] = useState(0)
     const [logs, setLogs] = useState<string[]>([])
 
+    const steps: Step[] = useMemo(() => [
+        {
+            id: 1,
+            title: t("step1"),
+            description: t("step1Desc"),
+            source: t("client"),
+            destination: t("localCache"),
+            status: "pending",
+        },
+        {
+            id: 2,
+            title: t("step2"),
+            description: t("step2Desc"),
+            source: t("client"),
+            destination: t("recursive"),
+            status: "pending",
+        },
+        {
+            id: 3,
+            title: t("step3"),
+            description: t("step3Desc"),
+            source: t("recursive"),
+            destination: t("root"),
+            status: "pending",
+        },
+        {
+            id: 4,
+            title: t("step4"),
+            description: t("step4Desc"),
+            source: t("recursive"),
+            destination: t("tld"),
+            status: "pending",
+        },
+        {
+            id: 5,
+            title: t("step5"),
+            description: t("step5Desc"),
+            source: t("recursive"),
+            destination: t("authoritative"),
+            status: "pending",
+        },
+        {
+            id: 6,
+            title: t("step6"),
+            description: t("step6Desc"),
+            source: t("recursive"),
+            destination: t("client"),
+            status: "pending",
+        },
+    ], [t])
+
     const startResolution = () => {
         if (!domain) return
         setIsResolving(true)
         setCurrentStep(0)
-        setLogs([`Starting DNS resolution for ${domain}...`])
+        setLogs([t("logStart", { domain })])
     }
 
     useEffect(() => {
@@ -90,32 +92,33 @@ export function DnsResolver() {
         } else if (currentStep === steps.length) {
             const timer = setTimeout(() => {
                 setIsResolving(false)
-                setLogs((prev) => [...prev, `Resolution successful! IP found for ${domain}`])
+                setLogs((prev) => [...prev, t("logSuccess", { domain })])
             }, 500)
             return () => clearTimeout(timer)
         }
-    }, [isResolving, currentStep, domain])
+    }, [isResolving, currentStep, domain, steps, t])
 
     return (
         <div className="grid gap-6 lg:grid-cols-2">
             <div className="space-y-6">
                 <Card>
                     <CardHeader>
-                        <CardTitle>DNS Query Simulator</CardTitle>
+                        <CardTitle>{t("title")}</CardTitle>
                         <CardDescription>
-                            Enter a domain name to visualize how the Domain Name System resolves it to an IP address.
+                            {t("description")}
                         </CardDescription>
                     </CardHeader>
                     <CardContent>
                         <div className="flex space-x-2">
                             <Input
-                                placeholder="example.com"
+                                placeholder={t("placeholder")}
                                 value={domain}
                                 onChange={(e) => setDomain(e.target.value)}
                                 disabled={isResolving}
                             />
                             <Button onClick={startResolution} disabled={isResolving || !domain}>
-                                {isResolving ? "Resolving..." : "Resolve"}
+                                {isResolving ? <RefreshCw className="mr-2 h-4 w-4 animate-spin" /> : <Search className="mr-2 h-4 w-4" />}
+                                {isResolving ? t("resolving") : t("resolve")}
                             </Button>
                         </div>
                     </CardContent>
@@ -123,7 +126,7 @@ export function DnsResolver() {
 
                 <Card className="h-[400px] overflow-hidden flex flex-col">
                     <CardHeader>
-                        <CardTitle>Resolution Logs</CardTitle>
+                        <CardTitle>{t("logsTitle")}</CardTitle>
                     </CardHeader>
                     <CardContent className="flex-1 overflow-y-auto font-mono text-sm">
                         <div className="space-y-2">
@@ -157,49 +160,40 @@ export function DnsResolver() {
                 <div className="grid grid-cols-2 gap-8 h-full">
                     <ServerNode
                         icon={<Globe className="h-8 w-8 text-blue-500" />}
-                        label="Client (Browser)"
+                        label={t("client")}
                         active={currentStep === 0 || currentStep === 6}
-                        position="top-left"
                     />
                     <ServerNode
                         icon={<Server className="h-8 w-8 text-purple-500" />}
-                        label="Recursive Resolver"
+                        label={t("recursive")}
                         active={[1, 2, 3, 4, 5].includes(currentStep)}
-                        position="top-right"
                     />
                     <ServerNode
                         icon={<Database className="h-8 w-8 text-orange-500" />}
-                        label="Root Server (.)"
+                        label={t("root")}
                         active={currentStep === 2}
-                        position="center-left"
                     />
                     <ServerNode
                         icon={<Database className="h-8 w-8 text-yellow-500" />}
-                        label="TLD Server (.com)"
+                        label={t("tld")}
                         active={currentStep === 3}
-                        position="center-right"
                     />
                     <ServerNode
                         icon={<Database className="h-8 w-8 text-green-500" />}
-                        label="Authoritative Server"
+                        label={t("authoritative")}
                         active={currentStep === 4}
-                        position="bottom-center"
                         className="col-span-2 mx-auto"
                     />
                 </div>
 
-                {/* Connection Lines Animation (Simplified for React) */}
                 <AnimatePresence>
-                    {/* This would be complex to draw perfect lines in pure CSS/Divs without SVG, 
-               so we rely on the node highlighting to show flow for now. 
-               Future improvement: Add SVG lines connecting these nodes. */}
                 </AnimatePresence>
             </div>
         </div>
     )
 }
 
-function ServerNode({ icon, label, active, position, className }: { icon: React.ReactNode, label: string, active: boolean, position?: string, className?: string }) {
+function ServerNode({ icon, label, active, className }: { icon: React.ReactNode, label: string, active: boolean, className?: string }) {
     return (
         <motion.div
             animate={{

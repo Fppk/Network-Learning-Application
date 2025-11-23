@@ -7,27 +7,29 @@ import {
     TableHeader,
     TableRow,
 } from "@/components/ui/table"
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { IpVisualizer } from "@/components/visualizers/ip-visualizer"
+import { useTranslations } from "next-intl"
 
 export function IpAddressingContent() {
+    const t = useTranslations("IpAddressing")
+
     return (
         <div className="space-y-8">
             <section className="space-y-4">
-                <h2 className="text-2xl font-bold">IP Address Classes</h2>
+                <h2 className="text-2xl font-bold">{t("title")}</h2>
                 <p className="text-lg text-muted-foreground">
-                    IPv4 addresses are divided into 5 classes (A-E) based on the leading bits.
+                    {t("description")}
                 </p>
 
                 <div className="rounded-md border">
                     <Table>
                         <TableHeader>
                             <TableRow>
-                                <TableHead>Class</TableHead>
-                                <TableHead>Range</TableHead>
-                                <TableHead>Default Mask</TableHead>
-                                <TableHead>Network Bits</TableHead>
-                                <TableHead>Max Hosts</TableHead>
+                                <TableHead>{t("table.class")}</TableHead>
+                                <TableHead>{t("table.range")}</TableHead>
+                                <TableHead>{t("table.mask")}</TableHead>
+                                <TableHead>{t("table.bits")}</TableHead>
+                                <TableHead>{t("table.hosts")}</TableHead>
                             </TableRow>
                         </TableHeader>
                         <TableBody>
@@ -56,7 +58,7 @@ export function IpAddressingContent() {
                                 <TableCell className="font-bold">D</TableCell>
                                 <TableCell>224.0.0.0 - 239.255.255.255</TableCell>
                                 <TableCell>-</TableCell>
-                                <TableCell>Multicast</TableCell>
+                                <TableCell>{t("table.multicast")}</TableCell>
                                 <TableCell>-</TableCell>
                             </TableRow>
                         </TableBody>
@@ -65,16 +67,16 @@ export function IpAddressingContent() {
             </section>
 
             <section className="space-y-4">
-                <h3 className="text-xl font-bold">Interactive IP Analyzer</h3>
+                <h3 className="text-xl font-bold">{t("analyzerTitle")}</h3>
                 <IpVisualizer />
             </section>
 
             <section className="space-y-4">
-                <h2 className="text-2xl font-bold">Special Addresses</h2>
+                <h2 className="text-2xl font-bold">{t("specialTitle")}</h2>
                 <div className="grid gap-4 md:grid-cols-2">
                     <div className="p-4 bg-slate-50 dark:bg-slate-900 rounded-lg">
-                        <h3 className="font-bold">Private Addresses (RFC 1918)</h3>
-                        <p className="text-sm text-muted-foreground mb-2">Not routable on the public internet.</p>
+                        <h3 className="font-bold">{t("privateTitle")}</h3>
+                        <p className="text-sm text-muted-foreground mb-2">{t("privateDesc")}</p>
                         <ul className="list-disc list-inside font-mono text-sm">
                             <li>10.0.0.0/8</li>
                             <li>172.16.0.0/12</li>
@@ -82,11 +84,11 @@ export function IpAddressingContent() {
                         </ul>
                     </div>
                     <div className="p-4 bg-slate-50 dark:bg-slate-900 rounded-lg">
-                        <h3 className="font-bold">Other Reserved</h3>
+                        <h3 className="font-bold">{t("reservedTitle")}</h3>
                         <ul className="list-disc list-inside text-sm mt-2">
-                            <li><strong>127.0.0.1</strong>: Loopback (Localhost)</li>
-                            <li><strong>0.0.0.0</strong>: Any network / Default route</li>
-                            <li><strong>255.255.255.255</strong>: Broadcast</li>
+                            <li><strong>127.0.0.1</strong>: {t("loopback")}</li>
+                            <li><strong>0.0.0.0</strong>: {t("default")}</li>
+                            <li><strong>255.255.255.255</strong>: {t("broadcast")}</li>
                         </ul>
                     </div>
                 </div>

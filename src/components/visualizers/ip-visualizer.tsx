@@ -5,8 +5,10 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Badge } from "@/components/ui/badge"
+import { useTranslations } from "next-intl"
 
 export function IpVisualizer() {
+    const t = useTranslations("IpVisualizer")
     const [ip, setIp] = useState("192.168.1.1")
 
     const analysis = useMemo(() => {
@@ -60,14 +62,14 @@ export function IpVisualizer() {
     return (
         <Card className="w-full max-w-3xl mx-auto">
             <CardHeader>
-                <CardTitle>IP Address Analyzer</CardTitle>
+                <CardTitle>{t("title")}</CardTitle>
                 <CardDescription>
-                    Analyze IPv4 addresses to understand classes, binary representation, and types.
+                    {t("description")}
                 </CardDescription>
             </CardHeader>
             <CardContent className="space-y-6">
                 <div className="space-y-2">
-                    <Label htmlFor="ip-input">Enter IPv4 Address</Label>
+                    <Label htmlFor="ip-input">{t("label")}</Label>
                     <Input
                         id="ip-input"
                         value={ip}
@@ -81,26 +83,26 @@ export function IpVisualizer() {
                     <div className="grid gap-6 md:grid-cols-2">
                         <div className="space-y-4">
                             <div className="p-4 rounded-lg bg-muted space-y-2">
-                                <div className="text-sm text-muted-foreground">IP Class</div>
+                                <div className="text-sm text-muted-foreground">{t("class")}</div>
                                 <div className="text-2xl font-bold text-primary">Class {analysis.class}</div>
                             </div>
                             <div className="p-4 rounded-lg bg-muted space-y-2">
-                                <div className="text-sm text-muted-foreground">Address Type</div>
+                                <div className="text-sm text-muted-foreground">{t("type")}</div>
                                 <div className="flex items-center gap-2">
                                     <span className="text-xl font-semibold">{analysis.type}</span>
-                                    {analysis.type === "Private" && <Badge variant="secondary">Local Network</Badge>}
-                                    {analysis.type === "Public" && <Badge>Internet Routable</Badge>}
+                                    {analysis.type === "Private" && <Badge variant="secondary">{t("private")}</Badge>}
+                                    {analysis.type === "Public" && <Badge>{t("public")}</Badge>}
                                 </div>
                             </div>
                         </div>
 
                         <div className="space-y-4">
                             <div className="p-4 rounded-lg bg-muted space-y-2">
-                                <div className="text-sm text-muted-foreground">Default Subnet Mask</div>
+                                <div className="text-sm text-muted-foreground">{t("mask")}</div>
                                 <div className="font-mono text-lg">{analysis.mask}</div>
                             </div>
                             <div className="p-4 rounded-lg bg-slate-900 text-slate-50 space-y-2">
-                                <div className="text-sm text-slate-400">Binary Representation</div>
+                                <div className="text-sm text-slate-400">{t("binary")}</div>
                                 <div className="font-mono text-sm break-all">
                                     {analysis.binary?.split('.').map((octet, i) => (
                                         <span key={i}>
@@ -113,8 +115,8 @@ export function IpVisualizer() {
                         </div>
                     </div>
                 ) : (
-                    <div className="p-8 text-center text-muted-foreground bg-muted/50 rounded-lg border border-dashed">
-                        Invalid IPv4 Address format
+                    <div className="p-4 rounded-lg bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 flex items-center gap-2">
+                        <div className="text-red-500 font-medium">{t("invalid")}</div>
                     </div>
                 )}
             </CardContent>

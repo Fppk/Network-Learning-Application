@@ -6,8 +6,10 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Slider } from "@/components/ui/slider"
 import { Badge } from "@/components/ui/badge"
+import { useTranslations } from "next-intl"
 
 export function SubnetCalculator() {
+    const t = useTranslations("SubnetCalculator")
     const [ip, setIp] = useState("192.168.1.0")
     const [cidr, setCidr] = useState(24)
     const [borrowedBits, setBorrowedBits] = useState(1)
@@ -68,15 +70,15 @@ export function SubnetCalculator() {
     return (
         <Card className="w-full max-w-4xl mx-auto">
             <CardHeader>
-                <CardTitle>Subnet Calculator</CardTitle>
+                <CardTitle>{t("title")}</CardTitle>
                 <CardDescription>
-                    Visually split a network into smaller subnets by borrowing host bits.
+                    {t("description")}
                 </CardDescription>
             </CardHeader>
             <CardContent className="space-y-8">
                 <div className="grid gap-6 sm:grid-cols-2">
                     <div className="space-y-2">
-                        <Label htmlFor="ip">Network Address</Label>
+                        <Label htmlFor="ip">{t("networkAddress")}</Label>
                         <Input
                             id="ip"
                             value={ip}
@@ -86,7 +88,7 @@ export function SubnetCalculator() {
                         />
                     </div>
                     <div className="space-y-2">
-                        <Label htmlFor="cidr">Current CIDR (/{cidr})</Label>
+                        <Label htmlFor="cidr">{t("currentCidr")}</Label>
                         <div className="flex items-center space-x-4">
                             <Slider
                                 id="cidr"
@@ -105,9 +107,9 @@ export function SubnetCalculator() {
                 <div className="space-y-4 rounded-lg border bg-muted/50 p-4">
                     <div className="space-y-2">
                         <div className="flex justify-between">
-                            <Label>Borrow Bits: {borrowedBits}</Label>
+                            <Label>{t("borrowBits")}: {borrowedBits}</Label>
                             <span className="text-sm text-muted-foreground">
-                                New CIDR: <span className="font-bold text-primary">/{cidr + borrowedBits}</span>
+                                {t("newCidr")}: <span className="font-bold text-primary">/{cidr + borrowedBits}</span>
                             </span>
                         </div>
                         <Slider
@@ -121,18 +123,18 @@ export function SubnetCalculator() {
 
                     <div className="grid grid-cols-2 gap-4 text-sm">
                         <div className="flex flex-col items-center justify-center rounded-md bg-background p-2 shadow-sm">
-                            <span className="text-muted-foreground">Subnets Created</span>
+                            <span className="text-muted-foreground">{t("subnetsCreated")}</span>
                             <span className="text-2xl font-bold">{Math.pow(2, borrowedBits)}</span>
                         </div>
                         <div className="flex flex-col items-center justify-center rounded-md bg-background p-2 shadow-sm">
-                            <span className="text-muted-foreground">Hosts per Subnet</span>
+                            <span className="text-muted-foreground">{t("hostsPerSubnet")}</span>
                             <span className="text-2xl font-bold">{Math.pow(2, 32 - (cidr + borrowedBits)) - 2}</span>
                         </div>
                     </div>
                 </div>
 
                 <div className="space-y-4">
-                    <h3 className="font-semibold">Resulting Subnets (First 16)</h3>
+                    <h3 className="font-semibold">{t("resultingSubnets")}</h3>
                     <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
                         {subnets.map((subnet) => (
                             <div
@@ -144,15 +146,15 @@ export function SubnetCalculator() {
                                     <span className="font-mono font-bold">{subnet.network}</span>
                                 </div>
                                 <div className="text-xs text-muted-foreground">
-                                    <div>Range: {subnet.range}</div>
-                                    <div>Broadcast: {subnet.broadcast}</div>
+                                    <div>{t("range")}: {subnet.range}</div>
+                                    <div>{t("broadcast")}: {subnet.broadcast}</div>
                                 </div>
                             </div>
                         ))}
                     </div>
                     {Math.pow(2, borrowedBits) > 16 && (
                         <p className="text-center text-sm text-muted-foreground">
-                            ... and {Math.pow(2, borrowedBits) - 16} more subnets.
+                            {t("moreSubnets", { count: Math.pow(2, borrowedBits) - 16 })}
                         </p>
                     )}
                 </div>

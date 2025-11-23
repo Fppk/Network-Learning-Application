@@ -4,12 +4,14 @@ import React, { useState } from "react"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { motion, AnimatePresence } from "framer-motion"
-import { ArrowRight, CheckCircle, RefreshCcw, Laptop, Server } from "lucide-react"
+import { ArrowRight, RefreshCcw, Laptop, Server } from "lucide-react"
 import { Badge } from "@/components/ui/badge"
+import { useTranslations } from "next-intl"
 
 type TcpState = "CLOSED" | "LISTEN" | "SYN_SENT" | "SYN_RCVD" | "ESTABLISHED"
 
 export function TcpHandshake() {
+    const t = useTranslations("TcpHandshakeVisualizer")
     const [step, setStep] = useState(0)
 
     // State tracking
@@ -52,9 +54,9 @@ export function TcpHandshake() {
     return (
         <Card className="w-full max-w-3xl mx-auto">
             <CardHeader>
-                <CardTitle>TCP Three-Way Handshake</CardTitle>
+                <CardTitle>{t("title")}</CardTitle>
                 <CardDescription>
-                    Step-by-step visualization of establishing a reliable connection.
+                    {t("description")}
                 </CardDescription>
             </CardHeader>
             <CardContent className="space-y-8">
@@ -68,7 +70,7 @@ export function TcpHandshake() {
                             <Laptop className="h-8 w-8 text-blue-500" />
                         </div>
                         <div className="text-center">
-                            <div className="font-bold">Client</div>
+                            <div className="font-bold">{t("client")}</div>
                             <Badge variant={clientState === "ESTABLISHED" ? "default" : "secondary"} className="mt-1">
                                 {clientState}
                             </Badge>
@@ -81,7 +83,7 @@ export function TcpHandshake() {
                             <Server className="h-8 w-8 text-orange-500" />
                         </div>
                         <div className="text-center">
-                            <div className="font-bold">Server</div>
+                            <div className="font-bold">{t("server")}</div>
                             <Badge variant={serverState === "ESTABLISHED" ? "default" : "secondary"} className="mt-1">
                                 {serverState}
                             </Badge>
@@ -141,15 +143,15 @@ export function TcpHandshake() {
                         <div className="space-y-2 text-sm text-muted-foreground">
                             <div className={`flex items-center ${step >= 1 ? "text-foreground font-medium" : "opacity-50"}`}>
                                 <div className="w-6 text-center mr-2">1.</div>
-                                Client sends SYN to request connection.
+                                {t("step1")}
                             </div>
                             <div className={`flex items-center ${step >= 2 ? "text-foreground font-medium" : "opacity-50"}`}>
                                 <div className="w-6 text-center mr-2">2.</div>
-                                Server acknowledges (ACK) and sends its own SYN.
+                                {t("step2")}
                             </div>
                             <div className={`flex items-center ${step >= 3 ? "text-foreground font-medium" : "opacity-50"}`}>
                                 <div className="w-6 text-center mr-2">3.</div>
-                                Client acknowledges Server&apos;s SYN. Connection Established.
+                                {t("step3")}
                             </div>
                         </div>
                     </div>
@@ -158,13 +160,12 @@ export function TcpHandshake() {
                 <div className="flex justify-center">
                     {step < 3 ? (
                         <Button onClick={nextStep} size="lg" className="w-40">
-                            {step === 0 ? "Start Handshake" : "Next Step"}
+                            {step === 0 ? t("start") : t("next")}
                             <ArrowRight className="ml-2 h-4 w-4" />
                         </Button>
                     ) : (
                         <Button onClick={reset} variant="outline" size="lg" className="w-40">
-                            Reset
-                            <RefreshCcw className="ml-2 h-4 w-4" />
+                            <RefreshCcw className="mr-2 h-4 w-4" /> {t("reset")}
                         </Button>
                     )}
                 </div>

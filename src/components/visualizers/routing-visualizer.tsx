@@ -1,9 +1,10 @@
 "use client"
 
-import React, { useState, useEffect } from "react"
+import React, { useState } from "react"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { motion } from "framer-motion"
+import { useTranslations } from "next-intl"
 
 type Node = {
     id: string
@@ -34,6 +35,7 @@ const links: Link[] = [
 ]
 
 export function RoutingVisualizer() {
+    const t = useTranslations("RoutingVisualizer")
     const [activePath, setActivePath] = useState<string[]>([])
     const [calculating, setCalculating] = useState(false)
     const [log, setLog] = useState<string[]>([])
@@ -41,34 +43,34 @@ export function RoutingVisualizer() {
     const runDijkstra = () => {
         setCalculating(true)
         setActivePath([])
-        setLog(["Starting Shortest Path calculation from A to D..."])
+        setLog([t("logStart")])
 
         // Simulation of steps
         setTimeout(() => {
-            setLog(prev => [...prev, "Checking neighbors of A: B(5), C(2)"])
+            setLog(prev => [...prev, t("logNeighborsA")])
             setActivePath(["A"])
         }, 1000)
 
         setTimeout(() => {
-            setLog(prev => [...prev, "Choosing C (cost 2) as closest node."])
+            setLog(prev => [...prev, t("logChooseC")])
             setActivePath(["A", "C"])
         }, 2500)
 
         setTimeout(() => {
-            setLog(prev => [...prev, "Checking neighbors of C: D(8+2=10), B(1+2=3)"])
+            setLog(prev => [...prev, t("logNeighborsC")])
         }, 4000)
 
         setTimeout(() => {
-            setLog(prev => [...prev, "Updating path to B via C (cost 3) is better than direct A->B (cost 5)."])
+            setLog(prev => [...prev, t("logUpdateB")])
             setActivePath(["A", "C", "B"])
         }, 5500)
 
         setTimeout(() => {
-            setLog(prev => [...prev, "Checking neighbors of B: D(3+3=6)."])
+            setLog(prev => [...prev, t("logNeighborsB")])
         }, 7000)
 
         setTimeout(() => {
-            setLog(prev => [...prev, "Path found: A -> C -> B -> D (Total Cost: 6)"])
+            setLog(prev => [...prev, t("logFound")])
             setActivePath(["A", "C", "B", "D"])
             setCalculating(false)
         }, 8500)
@@ -77,9 +79,9 @@ export function RoutingVisualizer() {
     return (
         <Card className="w-full max-w-3xl mx-auto">
             <CardHeader>
-                <CardTitle>Routing Algorithm Simulator (Dijkstra)</CardTitle>
+                <CardTitle>{t("title")}</CardTitle>
                 <CardDescription>
-                    Visualize how a router finds the shortest path in a network.
+                    {t("description")}
                 </CardDescription>
             </CardHeader>
             <CardContent className="space-y-6">
@@ -134,13 +136,13 @@ export function RoutingVisualizer() {
 
                 <div className="flex flex-col sm:flex-row gap-4">
                     <Button onClick={runDijkstra} disabled={calculating} className="w-full sm:w-auto">
-                        {calculating ? "Calculating..." : "Find Shortest Path (A to D)"}
+                        {calculating ? t("calculating") : t("start")}
                     </Button>
                     <div className="flex-1 bg-muted p-4 rounded-md font-mono text-sm h-32 overflow-y-auto">
                         {log.map((l, i) => (
                             <div key={i} className="mb-1">{">"} {l}</div>
                         ))}
-                        {log.length === 0 && <span className="text-muted-foreground">Ready to simulate...</span>}
+                        {log.length === 0 && <span className="text-muted-foreground">{t("ready")}</span>}
                     </div>
                 </div>
             </CardContent>
