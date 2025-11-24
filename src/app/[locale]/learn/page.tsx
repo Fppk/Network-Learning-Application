@@ -10,9 +10,9 @@ export default function LearnPage() {
     return (
         <div className="container py-10">
             <div className="mb-8 space-y-4">
-                <h1 className="text-4xl font-bold tracking-tight">{t("intro.title")}</h1>
+                <h1 className="text-4xl font-bold tracking-tight">{t("introduction.title")}</h1>
                 <p className="text-xl text-muted-foreground">
-                    {t("intro.description")}
+                    {t("introduction.description")}
                 </p>
             </div>
 

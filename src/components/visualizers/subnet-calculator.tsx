@@ -43,7 +43,7 @@ export function SubnetCalculator() {
             const mask = -1 << (32 - cidr)
             ipLong = ipLong & mask // This ensures we start from the network address
 
-            for (let i = 0; i < Math.min(numSubnets, 16); i++) { // Limit to 16 for display
+            for (let i = 0; i < numSubnets; i++) {
                 const subnetIpLong = ipLong + (i * blockSize)
                 const broadcastLong = subnetIpLong + blockSize - 1
 
@@ -152,11 +152,7 @@ export function SubnetCalculator() {
                             </div>
                         ))}
                     </div>
-                    {Math.pow(2, borrowedBits) > 16 && (
-                        <p className="text-center text-sm text-muted-foreground">
-                            {t("moreSubnets", { count: Math.pow(2, borrowedBits) - 16 })}
-                        </p>
-                    )}
+
                 </div>
             </CardContent>
         </Card>

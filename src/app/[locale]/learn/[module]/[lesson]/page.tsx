@@ -53,6 +53,8 @@ export default async function LessonPage({ params }: LessonPageProps) {
     const t = await getTranslations("Curriculum")
     const tCommon = await getTranslations("Common")
 
+    const tQuizData = await getTranslations("QuizData")
+
     // Find next and previous lessons
     const allLessons = curriculum.flatMap((m) =>
         m.lessons.map((l) => ({ ...l, moduleSlug: m.slug }))
@@ -63,7 +65,22 @@ export default async function LessonPage({ params }: LessonPageProps) {
     const prevLesson = currentIndex > 0 ? allLessons[currentIndex - 1] : null
     const nextLesson = currentIndex < allLessons.length - 1 ? allLessons[currentIndex + 1] : null
 
-    const lessonQuiz = quizData[lessonData.slug]
+    const lessonQuizRaw = quizData[lessonData.slug]
+    let lessonQuiz = null
+
+    if (lessonQuizRaw) {
+        try {
+            lessonQuiz = lessonQuizRaw.map((q, index) => ({
+                ...q,
+                text: tQuizData(`${lessonData.slug}.${index}.text`),
+                options: tQuizData.raw(`${lessonData.slug}.${index}.options`) as string[],
+                explanation: tQuizData(`${lessonData.slug}.${index}.explanation`)
+            }))
+        } catch (e) {
+            console.error(`Error loading quiz translations for ${lessonData.slug}:`, e)
+            lessonQuiz = lessonQuizRaw
+        }
+    }
 
     // Render the appropriate content
     const renderContent = () => {
@@ -117,7 +134,7 @@ export default async function LessonPage({ params }: LessonPageProps) {
                     </TabsTrigger>
                     <TabsTrigger value="quiz" disabled={!lessonQuiz}>
                         <GraduationCap className="mr-2 h-4 w-4" />
-                        Quiz
+                        {tCommon("quiz")}
                     </TabsTrigger>
                 </TabsList>
 
