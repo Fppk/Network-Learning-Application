@@ -23,7 +23,15 @@
         "feature6Title": "Application Layer",
         "feature6Desc": "Deconstruct HTTP, DNS, DHCP, and other protocols that power the web.",
         "ctaTitle": "Ready to start your journey?",
-        "ctaDesc": "Join thousands of students mastering computer networks through visualization. No sign-up required."
+        "ctaDesc": "Join thousands of students mastering computer networks through visualization. No sign-up required.",
+        "newFeature": "New: DNS Visualizer Added ✨",
+        "stats": {
+            "coreChapters": "Core Chapters",
+            "interactiveLabs": "Interactive Labs",
+            "freeOpen": "Free & Open",
+            "aiReview": "Powered Review"
+        },
+        "featuresSubtitle": "From the physical cables to the applications you use every day."
     },
     "NetworkDelay": {
         "title1": "1. Transmission Delay",
@@ -92,6 +100,18 @@
         },
         "routing-algorithms": {
             "title": "Routing Algorithms",
+            "description": "Static Routing, RIP, and OSPF."
+        },
+        "transport": {
+            "title": "Chapter 5: Transport Layer",
+            "description": "Reliable delivery and flow control."
+        },
+        "tcp-handshake": {
+            "title": "TCP Three-Way Handshake",
+            "description": "Establishing a connection reliably."
+        },
+        "ports-protocols": {
+            "title": "Ports & Protocols",
             "description": "Well-known ports for common services."
         },
         "application": {
@@ -129,16 +149,219 @@
         },
         "dhcp-sim": {
             "title": "DHCP Simulator",
-            "messageDesc": "The data to be sent.",
-            "generator": "Generator (G)",
-            "generatorDesc": "A shared polynomial divisor.",
-            "fcs": "FCS (R)",
-            "fcsDesc": "The remainder (Frame Check Sequence).",
-            "algorithm": "The Algorithm",
-            "step1": "Append r zeros to Message, where r is degree of G.",
-            "step2": "Divide (XOR) the new Message by G.",
-            "step3": "The remainder is the FCS.",
-            "step4": "Transmit Message + FCS."
+            "description": "Visualize the DORA process for dynamic IP assignment."
+        },
+        "crc-calc": {
+            "title": "CRC Calculator",
+            "description": "Generate error detection codes using polynomial division."
+        },
+        "subnet-calc": {
+            "title": "Subnet Calculator",
+            "description": "Split networks into subnets and calculate masks."
+        },
+        "tcp-handshake": {
+            "title": "TCP Handshake",
+            "description": "Step-by-step visualization of the 3-way handshake."
+        },
+        "dns-resolver": {
+            "title": "DNS Resolver",
+            "description": "Trace the path of a DNS query from client to authoritative server."
+        }
+    },
+    "IpAddressing": {
+        "title": "IP Address Classes",
+        "description": "IPv4 addresses are divided into 5 classes (A-E) based on the leading bits.",
+        "table": {
+            "class": "Class",
+            "range": "Range",
+            "mask": "Default Mask",
+            "bits": "Network Bits",
+            "hosts": "Max Hosts",
+            "multicast": "Multicast"
+        },
+        "analyzerTitle": "Interactive IP Analyzer",
+        "specialTitle": "Special Addresses",
+        "privateTitle": "Private Addresses (RFC 1918)",
+        "privateDesc": "Not routable on the public internet.",
+        "reservedTitle": "Other Reserved",
+        "loopback": "Loopback (Localhost)",
+        "default": "Any network / Default route",
+        "broadcast": "Broadcast"
+    },
+    "Subnetting": {
+        "title": "Subnetting & CIDR",
+        "description": "Subnetting allows you to divide a single network into smaller logical networks (subnets) by borrowing bits from the host portion of the IP address.",
+        "whyTitle": "Why Subnet?",
+        "reason1": "Reduce network traffic (smaller broadcast domains).",
+        "reason2": "Improve network security.",
+        "reason3": "Easier management.",
+        "calcTitle": "Interactive Calculator",
+        "calcDesc": "Use the tool below to visualize how borrowing bits increases the number of subnets but decreases the number of hosts per subnet."
+    },
+    "RoutingAlgorithms": {
+        "basicsTitle": "Routing Basics",
+        "basicsDesc": "Routing is the process of selecting a path for traffic in a network or between or across multiple networks.",
+        "tabs": {
+            "static": "Static Routing",
+            "rip": "RIP (Distance Vector)",
+            "ospf": "OSPF (Link State)"
+        },
+        "static": {
+            "title": "Static Routing",
+            "desc": "Routes are manually configured by a network administrator.",
+            "pros": "Pros",
+            "prosDesc": "Simple, secure, no overhead.",
+            "cons": "Cons",
+            "consDesc": "Hard to maintain, no automatic rerouting."
+        },
+        "rip": {
+            "title": "RIP (Routing Information Protocol)",
+            "desc": "A Distance-Vector protocol that uses hop count as a metric.",
+            "metric": "Metric",
+            "metricDesc": "Hop count (Max 15, 16 is unreachable).",
+            "update": "Update",
+            "updateDesc": "Broadcasts entire routing table every 30s.",
+            "algo": "Algorithm",
+            "algoDesc": "Bellman-Ford."
+        },
+        "ospf": {
+            "title": "OSPF (Open Shortest Path First)",
+            "desc": "A Link-State protocol that maintains a full map of the network topology.",
+            "metric": "Metric",
+            "metricDesc": "Cost (Bandwidth).",
+            "update": "Update",
+            "updateDesc": "Triggered updates (only changes sent).",
+            "algo": "Algorithm",
+            "algoDesc": "Dijkstra (Shortest Path First)."
+        },
+        "simTitle": "Interactive Routing Simulator"
+    },
+    "Dns": {
+        "title": "Domain Name System (DNS)",
+        "description": "The phonebook of the internet. Translates human-readable domain names (google.com) to IP addresses (142.250.191.196).",
+        "vizTitle": "Interactive Visualization",
+        "recursiveTitle": "Recursive Query",
+        "recursiveQuote": "\"Hey, find this for me and don't come back until you have the answer.\"",
+        "recursiveFlow": "Client → Local DNS → Root → TLD → Auth → Local DNS → Client",
+        "iterativeTitle": "Iterative Query",
+        "iterativeQuote": "\"I don't know, but here is who you should ask next.\"",
+        "iterativeFlow": "Local DNS asks Root (\"Go to .com\") → Asks .com (\"Go to google.com\") → Asks Auth (\"Here is the IP\")"
+    },
+    "Dhcp": {
+        "title": "Dynamic Host Configuration Protocol (DHCP)",
+        "description": "Automatically assigns IP addresses and other network configuration to devices on a network.",
+        "doraTitle": "The DORA Process",
+        "discover": "1. Discover",
+        "discoverDesc": "Client shouts: \"Is there a DHCP server here?\" (Broadcast)",
+        "offer": "2. Offer",
+        "offerDesc": "Server whispers: \"I have IP 192.168.1.5 available.\"",
+        "request": "3. Request",
+        "Curriculum": {
+            "intro": {
+                "title": "Chapter 1: Introduction",
+                "description": "Core concepts and performance metrics."
+            },
+            "network-delay": {
+                "title": "Network Delay (Latency)",
+                "description": "Calculate Transmission and Propagation delay."
+            },
+            "physical": {
+                "title": "Chapter 2: Physical Layer",
+                "description": "Bits, signals, and transmission media."
+            },
+            "digital-encoding": {
+                "title": "Digital Signal Encoding",
+                "description": "Manchester and Differential Manchester encoding."
+            },
+            "datalink": {
+                "title": "Chapter 3: Data Link Layer",
+                "description": "Error detection and local addressing."
+            },
+            "crc-check": {
+                "title": "Cyclic Redundancy Check (CRC)",
+                "description": "Learn how to detect errors using polynomial division."
+            },
+            "network": {
+                "title": "Chapter 4: Network Layer",
+                "description": "Routing, IP addressing, and Subnetting."
+            },
+            "ip-addressing": {
+                "title": "IP Addresses & Classification",
+                "description": "Class A, B, C, D, E and special addresses."
+            },
+            "subnetting": {
+                "title": "Subnetting & CIDR",
+                "description": "How to slice networks into smaller pieces."
+            },
+            "routing-algorithms": {
+                "title": "Routing Algorithms",
+                "description": "Static Routing, RIP, and OSPF."
+            },
+            "transport": {
+                "title": "Chapter 5: Transport Layer",
+                "description": "Reliable delivery and flow control."
+            },
+            "tcp-handshake": {
+                "title": "TCP Three-Way Handshake",
+                "description": "Establishing a connection reliably."
+            },
+            "ports-protocols": {
+                "title": "Ports & Protocols",
+                "description": "Well-known ports for common services."
+            },
+            "application": {
+                "title": "Chapter 6: Application Layer",
+                "description": "Network services for end users."
+            },
+            "dns": {
+                "title": "DNS (Domain Name System)",
+                "description": "Resolving names to IP addresses."
+            },
+            "dhcp": {
+                "title": "DHCP (Dynamic Host Configuration)",
+                "description": "Automating IP configuration (DORA process)."
+            }
+        },
+        "Labs": {
+            "title": "Interactive Labs",
+            "description": "Hands-on tools to visualize and experiment with core networking concepts.",
+            "launch": "Launch Lab",
+            "signal-encoder": {
+                "title": "Signal Encoder",
+                "description": "Visualize Manchester and Differential Manchester encoding waveforms."
+            },
+            "network-delay": {
+                "title": "Network Delay Calculator",
+                "description": "Calculate transmission and propagation delays interactively."
+            },
+            "ip-analyzer": {
+                "title": "IP Address Analyzer",
+                "description": "Analyze IPv4 addresses, classes, and binary formats."
+            },
+            "routing-sim": {
+                "title": "Routing Simulator",
+                "description": "Visualize Dijkstra's algorithm for finding the shortest path."
+            },
+            "dhcp-sim": {
+                "title": "DHCP Simulator",
+                "description": "Visualize the DORA process for dynamic IP assignment."
+            },
+            "crc-calc": {
+                "title": "CRC Calculator",
+                "description": "Generate error detection codes using polynomial division."
+            },
+            "subnet-calc": {
+                "title": "Subnet Calculator",
+                "description": "Split networks into subnets and calculate masks."
+            },
+            "tcp-handshake": {
+                "title": "TCP Handshake",
+                "description": "Step-by-step visualization of the 3-way handshake."
+            },
+            "dns-resolver": {
+                "title": "DNS Resolver",
+                "description": "Trace the path of a DNS query from client to authoritative server."
+            }
         },
         "IpAddressing": {
             "title": "IP Address Classes",
@@ -180,154 +403,13 @@
             },
             "static": {
                 "title": "Static Routing",
-                "iterativeTitle": "Iterative Query",
-                "iterativeQuote": "\"I don't know, but here is who you should ask next.\"",
-                "iterativeFlow": "Local DNS asks Root (\"Go to .com\") → Asks .com (\"Go to google.com\") → Asks Auth (\"Here is the IP\")"
+                "desc": "Routes are manually configured by a network administrator.",
+                "pros": "Pros",
+                "prosDesc": "Simple, secure, no overhead.",
+                "cons": "Cons",
+                "consDesc": "Hard to maintain, no automatic rerouting."
             },
-            "Dhcp": {
-                "title": "Dynamic Host Configuration Protocol (DHCP)",
-                "description": "Automatically assigns IP addresses and other network configuration to devices on a network.",
-                "doraTitle": "The DORA Process",
-                "discover": "1. Discover",
-                "discoverDesc": "Client shouts: \"Is there a DHCP server here?\" (Broadcast)",
-                "offer": "2. Offer",
-                "offerDesc": "Server whispers: \"I have IP 192.168.1.5 available.\"",
-                "title": "Network Delay Calculator",
-                "description": "Calculate and visualize Transmission vs. Propagation delay.",
-                "fileSize": "File Size (MB)",
-                "bandwidth": "Bandwidth (Mbps)",
-                "distance": "Distance (km)",
-                "medium": "Medium (Speed)",
-                "fiber": "Fiber Optic (200,000 km/s)",
-                "vacuum": "Vacuum/Air (300,000 km/s)",
-                "copper": "Copper (177,000 km/s)",
-                "transmissionDelay": "Transmission Delay",
-                "propagationDelay": "Propagation Delay",
-                "totalDelay": "Total Delay",
-                "pushingBits": "Pushing bits onto link",
-                "traveling": "Traveling across link",
-                "oneWayLatency": "One-way latency",
-                "delayComposition": "Delay Composition",
-                "transmission": "Transmission",
-                "propagation": "Propagation"
-            },
-            "SignalEncoder": {
-                "title": "Digital Signal Encoder",
-                "description": "Visualize how bits are converted into electrical signals.",
-                "binaryInput": "Binary Input",
-                "placeholder": "Enter 0s and 1s (e.g., 10110)",
-                "manchester": "Manchester",
-                "diffManchester": "Differential Manchester",
-                "howItWorks": "How it works:",
-                "manchesterRule1": "1: Transition from Low to High in the middle.",
-                "manchesterRule2": "0: Transition from High to Low in the middle.",
-                "manchesterRule3": "The mid-bit transition provides clock synchronization.",
-                "diffRule1": "Transition in middle: Always happens (for clock).",
-                "diffRule2": "0: Transition at the start of the bit period.",
-                "diffRule3": "1: No transition at the start of the bit period."
-            },
-            "CrcCalculator": {
-                "title": "CRC Calculator (Cyclic Redundancy Check)",
-                "description": "Visualize the Modulo-2 division used to generate error detection codes.",
-                "dataBits": "Data Bits (M)",
-                "generator": "Generator Polynomial (G)",
-                "calculate": "Calculate CRC",
-                "divisionProcess": "Division Process:",
-                "data": "Data:",
-                "zerosAdded": "Zeros Added:",
-                "dividend": "Dividend:",
-                "divisor": "Divisor:",
-                "remainder": "Remainder (FCS):",
-                "result": "Result",
-                "calculatedCrc": "Calculated CRC (FCS):",
-                "finalFrame": "Final Transmitted Frame:",
-                "stepMatch": "Step {step}: Match at index {index}"
-            },
-            "DhcpVisualizer": {
-                "title": "DHCP DORA Process",
-                "description": "Visualize how a device obtains an IP address dynamically.",
-                "client": "Client",
-                "server": "DHCP Server",
-                "start": "Start DHCP Request",
-                "negotiating": "Negotiating...",
-                "step1": "Discover",
-                "step1Desc": "Client broadcasts to find a DHCP server.",
-                "step2": "Offer",
-                "step2Desc": "Server offers an IP address to the client.",
-                "step3": "Request",
-                "step3Desc": "Client requests to use the offered IP.",
-                "step4": "Acknowledge",
-                "step4Desc": "Server acknowledges and assigns the IP.",
-                "logStart": "Starting DORA process...",
-                "logSuccess": "IP Address 192.168.1.100 assigned successfully!",
-                "logWaiting": "Waiting for activity...",
-                "networkLog": "Network Log",
-                "broadcast": "Broadcast"
-            },
-            "DnsResolver": {
-                "title": "DNS Query Simulator",
-                "description": "Enter a domain name to visualize how the Domain Name System resolves it to an IP address.",
-                "placeholder": "example.com",
-                "resolve": "Resolve",
-                "resolving": "Resolving...",
-                "logsTitle": "Resolution Logs",
-                "step1": "Browser Cache Check",
-                "step1Desc": "Browser checks if the IP is already cached locally.",
-                "step2": "Recursive Resolver",
-                "step2Desc": "Request sent to ISP's Recursive Resolver (e.g., 8.8.8.8).",
-                "step3": "Root Server Query",
-                "step3Desc": "Resolver asks Root Server: 'Where is .com?'",
-                "step4": "TLD Server Query",
-                "step4Desc": "Resolver asks TLD Server: 'Where is example.com?'",
-                "step5": "Authoritative Server Query",
-                "step5Desc": "Resolver asks Authoritative Server for the specific IP.",
-                "step6": "Resolution Complete",
-                "step6Desc": "IP address returned to the client.",
-                "logStart": "Starting DNS resolution for {domain}...",
-                "logSuccess": "Resolution successful! IP found for {domain}",
-                "client": "Client (Browser)",
-                "recursive": "Recursive Resolver",
-                "root": "Root Server (.)",
-                "tld": "TLD Server (.com)",
-                "authoritative": "Authoritative Server",
-                "localCache": "Local Cache"
-            },
-            "IpVisualizer": {
-                "title": "IP Address Analyzer",
-                "description": "Analyze IPv4 addresses to understand classes, binary representation, and types.",
-                "label": "Enter IPv4 Address",
-                "class": "IP Class",
-                "type": "Address Type",
-                "mask": "Default Subnet Mask",
-                "binary": "Binary Representation",
-                "valid": "Valid",
-                "invalid": "Invalid IPv4 Address format",
-                "private": "Local Network",
-                "public": "Internet Routable"
-            },
-            "RoutingVisualizer": {
-                "title": "Routing Algorithm Simulator (Dijkstra)",
-                "description": "Visualize how a router finds the shortest path in a network.",
-                "start": "Find Shortest Path (A to D)",
-                "calculating": "Calculating...",
-                "ready": "Ready to simulate...",
-                "logStart": "Starting Shortest Path calculation from A to D...",
-                "logNeighborsA": "Checking neighbors of A: B(5), C(2)",
-                "logChooseC": "Choosing C (cost 2) as closest node.",
-                "logNeighborsC": "Checking neighbors of C: D(8+2=10), B(1+2=3)",
-                "logUpdateB": "Updating path to B via C (cost 3) is better than direct A->B (cost 5).",
-                "logNeighborsB": "Checking neighbors of B: D(3+3=6).",
-                "logFound": "Path found: A -> C -> B -> D (Total Cost: 6)"
-            },
-            "SubnetCalculator": {
-                "title": "Subnet Calculator",
-                "description": "Visually split a network into smaller subnets by borrowing host bits.",
-                "networkAddress": "Network Address",
-                "currentCidr": "Current CIDR",
-                "borrowBits": "Borrow Bits",
-                "newCidr": "New CIDR",
-                "subnetsCreated": "Subnets Created",
-                "hostsPerSubnet": "Hosts per Subnet",
+            "rip": {
                 "title": "RIP (Routing Information Protocol)",
                 "desc": "A Distance-Vector protocol that uses hop count as a metric.",
                 "metric": "Metric",
@@ -344,17 +426,10 @@
                 "metricDesc": "Cost (Bandwidth).",
                 "update": "Update",
                 "updateDesc": "Triggered updates (only changes sent).",
-                "port": "Port",
-                "protocol": "Protocol",
-                "usage": "Usage",
-                "ftp": "File Transfer (Data/Control)",
-                "ssh": "Secure Remote Login",
-                "telnet": "Unsecured Remote Login",
-                "smtp": "Email Sending",
-                "dns": "Domain Name Resolution",
-                "http": "Web Browsing (Unencrypted)",
-                "https": "Web Browsing (Encrypted)"
-            }
+                "algo": "Algorithm",
+                "algoDesc": "Dijkstra (Shortest Path First)."
+            },
+            "simTitle": "Interactive Routing Simulator"
         },
         "Dns": {
             "title": "Domain Name System (DNS)",
@@ -381,11 +456,6 @@
             "ackDesc": "Server confirms: \"It's yours for 24 hours.\"",
             "simTitle": "Interactive DHCP Simulator"
         },
-        "Common": {
-            "back": "Back",
-            "next": "Next",
-            "complete": "Complete Course"
-        },
         "DelayCalculator": {
             "title": "Network Delay Calculator",
             "description": "Calculate and visualize Transmission vs. Propagation delay.",
@@ -401,148 +471,187 @@
             "totalDelay": "Total Delay",
             "pushingBits": "Pushing bits onto link",
             "traveling": "Traveling across link",
-            "oneWayLatency": "One-way latency",
-            "delayComposition": "Delay Composition",
-            "transmission": "Transmission",
-            "propagation": "Propagation"
+            "oneDesc": "High to Low transition (Manchester) / Transition at start (Diff Manchester)",
+            "zero": "Bit 0",
+            "zeroDesc": "Low to High transition (Manchester) / No transition at start (Diff Manchester)",
+            "pros": "Pros",
+            "prosDesc": "Self-clocking, no DC component.",
+            "cons": "Cons",
+            "consDesc": "Requires twice the bandwidth.",
+            "diffTitle": "Differential Manchester",
+            "diffDesc": "Transition at middle of bit interval is for clocking only.",
+            "midBit": "Mid-bit Transition",
+            "midBitDesc": "Always present (for clocking).",
+            "diffZero": "Bit 0",
+            "diffZeroDesc": "Transition at start of interval.",
+            "diffOne": "Bit 1",
+            "diffOneDesc": "No transition at start of interval.",
+            "diffPros": "Pros",
+            "diffProsDesc": "Better noise immunity.",
+            "diffCons": "Cons",
+            "diffConsDesc": "Complex implementation."
         },
         "SignalEncoder": {
-            "title": "Digital Signal Encoder",
-            "description": "Visualize how bits are converted into electrical signals.",
+            "title": "Signal Encoder",
+            "description": "Visualize Manchester and Differential Manchester encoding.",
             "binaryInput": "Binary Input",
-            "placeholder": "Enter 0s and 1s (e.g., 10110)",
             "manchester": "Manchester",
             "diffManchester": "Differential Manchester",
-            "howItWorks": "How it works:",
-            "manchesterRule1": "1: Transition from Low to High in the middle.",
-            "manchesterRule2": "0: Transition from High to Low in the middle.",
-            "manchesterRule3": "The mid-bit transition provides clock synchronization.",
-            "diffRule1": "Transition in middle: Always happens (for clock).",
-            "diffRule2": "0: Transition at the start of the bit period.",
-            "diffRule3": "1: No transition at the start of the bit period."
+            "howItWorks": "How it Works",
+            "manchesterRule1": "0: Low -> High transition",
+            "manchesterRule2": "1: High -> Low transition",
+            "manchesterRule3": "Transition always occurs in the middle of the bit period."
+        },
+        "CrcCheck": {
+            "title": "CRC Check",
+            "description": "Cyclic Redundancy Check for error detection.",
+            "concepts": "Key Concepts",
+            "message": "Message (M)",
+            "messageDesc": "The data to be sent.",
+            "generator": "Generator (G)",
+            "generatorDesc": "The divisor polynomial.",
+            "fcs": "FCS (R)",
+            "fcsDesc": "Frame Check Sequence (Remainder).",
+            "algorithm": "Algorithm Steps",
+            "step1": "Append 0s to message (degree of G).",
+            "step2": "Divide modified message by G using XOR.",
+            "step3": "Remainder is the FCS.",
+            "step4": "Transmit Message + FCS."
         },
         "CrcCalculator": {
-            "title": "CRC Calculator (Cyclic Redundancy Check)",
-            "description": "Visualize the Modulo-2 division used to generate error detection codes.",
-            "dataBits": "Data Bits (M)",
-            "generator": "Generator Polynomial (G)",
-            "calculate": "Calculate CRC",
-            "divisionProcess": "Division Process:",
-            "data": "Data:",
-            "zerosAdded": "Zeros Added:",
-            "dividend": "Dividend:",
-            "divisor": "Divisor:",
-            "remainder": "Remainder (FCS):",
-            "result": "Result",
-            "calculatedCrc": "Calculated CRC (FCS):",
-            "finalFrame": "Final Transmitted Frame:",
-            "stepMatch": "Step {step}: Match at index {index}"
-        },
-        "DhcpVisualizer": {
-            "title": "DHCP DORA Process",
-            "description": "Visualize how a device obtains an IP address dynamically.",
-            "client": "Client",
-            "server": "DHCP Server",
-            "start": "Start DHCP Request",
-            "negotiating": "Negotiating...",
-            "step1": "Discover",
-            "step1Desc": "Client broadcasts to find a DHCP server.",
-            "step2": "Offer",
-            "step2Desc": "Server offers an IP address to the client.",
-            "step3": "Request",
-            "step3Desc": "Client requests to use the offered IP.",
-            "step4": "Acknowledge",
-            "step4Desc": "Server acknowledges and assigns the IP.",
-            "logStart": "Starting DORA process...",
-            "logSuccess": "IP Address 192.168.1.100 assigned successfully!",
-            "logWaiting": "Waiting for activity...",
-            "networkLog": "Network Log",
-            "broadcast": "Broadcast"
-        },
-        "DnsResolver": {
-            "title": "DNS Query Simulator",
-            "description": "Enter a domain name to visualize how the Domain Name System resolves it to an IP address.",
-            "placeholder": "example.com",
-            "resolve": "Resolve",
-            "resolving": "Resolving...",
-            "logsTitle": "Resolution Logs",
-            "step1": "Browser Cache Check",
-            "step1Desc": "Browser checks if the IP is already cached locally.",
-            "step2": "Recursive Resolver",
-            "step2Desc": "Request sent to ISP's Recursive Resolver (e.g., 8.8.8.8).",
-            "step3": "Root Server Query",
-            "step3Desc": "Resolver asks Root Server: 'Where is .com?'",
-            "step4": "TLD Server Query",
-            "step4Desc": "Resolver asks TLD Server: 'Where is example.com?'",
-            "step5": "Authoritative Server Query",
-            "step5Desc": "Resolver asks Authoritative Server for the specific IP.",
-            "step6": "Resolution Complete",
-            "step6Desc": "IP address returned to the client.",
-            "logStart": "Starting DNS resolution for {domain}...",
-            "logSuccess": "Resolution successful! IP found for {domain}",
-            "client": "Client (Browser)",
-            "recursive": "Recursive Resolver",
-            "root": "Root Server (.)",
-            "tld": "TLD Server (.com)",
-            "authoritative": "Authoritative Server",
-            "localCache": "Local Cache"
+            "title": "CRC Calculator",
+            "description": "Generate error detection codes using polynomial division.",
+            "dataBits": "Data Bits",
+            "generator": "Generator Polynomial",
+            "calculate": "Calculate"
         },
         "IpVisualizer": {
-            "title": "IP Address Analyzer",
-            "description": "Analyze IPv4 addresses to understand classes, binary representation, and types.",
-            "label": "Enter IPv4 Address",
-            "class": "IP Class",
-            "type": "Address Type",
-            "mask": "Default Subnet Mask",
-            "binary": "Binary Representation",
-            "valid": "Valid",
-            "invalid": "Invalid IPv4 Address format",
-            "private": "Local Network",
-            "public": "Internet Routable"
-        },
-        "RoutingVisualizer": {
-            "title": "Routing Algorithm Simulator (Dijkstra)",
-            "description": "Visualize how a router finds the shortest path in a network.",
-            "start": "Find Shortest Path (A to D)",
-            "calculating": "Calculating...",
-            "ready": "Ready to simulate...",
-            "logStart": "Starting Shortest Path calculation from A to D...",
-            "logNeighborsA": "Checking neighbors of A: B(5), C(2)",
-            "logChooseC": "Choosing C (cost 2) as closest node.",
-            "logNeighborsC": "Checking neighbors of C: D(8+2=10), B(1+2=3)",
-            "logUpdateB": "Updating path to B via C (cost 3) is better than direct A->B (cost 5).",
-            "logNeighborsB": "Checking neighbors of B: D(3+3=6).",
-            "logFound": "Path found: A -> C -> B -> D (Total Cost: 6)"
+            "title": "IP Address Visualizer",
+            "description": "Visualize IP address classes and binary representation.",
+            "label": "IP Address",
+            "class": "Class",
+            "mask": "Subnet Mask",
+            "type": "Type",
+            "private": "Private",
+            "public": "Public",
+            "binary": "Binary Representation"
         },
         "SubnetCalculator": {
             "title": "Subnet Calculator",
-            "description": "Visually split a network into smaller subnets by borrowing host bits.",
+            "description": "Calculate subnets, hosts, and ranges.",
             "networkAddress": "Network Address",
             "currentCidr": "Current CIDR",
             "borrowBits": "Borrow Bits",
             "newCidr": "New CIDR",
             "subnetsCreated": "Subnets Created",
             "hostsPerSubnet": "Hosts per Subnet",
-            "resultingSubnets": "Resulting Subnets (First 16)",
+            "resultingSubnets": "Resulting Subnets",
             "range": "Range",
-            "broadcast": "Broadcast",
-            "moreSubnets": "... and {count} more subnets."
+            "broadcast": "Broadcast"
+        },
+        "RoutingVisualizer": {
+            "title": "Routing Visualizer",
+            "description": "Visualize routing algorithms.",
+            "logStart": "Starting simulation...",
+            "logNeighborsA": "Node A checking neighbors...",
+            "logChooseC": "Choosing path via C (lower cost).",
+            "logNeighborsC": "Node C checking neighbors...",
+            "logUpdateB": "Updating path to B.",
+            "logNeighborsB": "Node B checking neighbors...",
+            "logFound": "Destination found!",
+            "start": "Start Simulation",
+            "calculating": "Calculating..."
+        },
+        "TcpHandshake": {
+            "title": "TCP Handshake",
+            "description": "The 3-way handshake process.",
+            "syn": "SYN",
+            "synFull": "Synchronize",
+            "synDesc": "Client initiates connection.",
+            "synAck": "SYN-ACK",
+            "synAckFull": "Synchronize-Acknowledge",
+            "synAckDesc": "Server acknowledges and requests sync.",
+            "ack": "ACK",
+            "ackFull": "Acknowledge",
+            "ackDesc": "Client acknowledges server's sync."
         },
         "TcpHandshakeVisualizer": {
-            "title": "TCP Three-Way Handshake",
-            "description": "Step-by-step visualization of establishing a reliable connection.",
+            "title": "TCP Handshake Visualizer",
+            "description": "Visualize the TCP connection establishment.",
             "client": "Client",
             "server": "Server",
+            "step1": "Step 1: SYN",
+            "step2": "Step 2: SYN-ACK",
+            "step3": "Step 3: ACK",
             "start": "Start Handshake",
             "next": "Next Step",
-            "reset": "Reset",
-            "step1": "1. Client sends SYN to request connection.",
-            "step2": "2. Server acknowledges (ACK) and sends its own SYN.",
-            "step3": "3. Client acknowledges Server's SYN. Connection Established."
+            "reset": "Reset"
+        },
+        "PortsProtocols": {
+            "title": "Ports & Protocols",
+            "description": "Common ports and their protocols.",
+            "table": {
+                "port": "Port",
+                "protocol": "Protocol",
+                "usage": "Usage",
+                "ssh": "Secure Shell (Remote Access)",
+                "telnet": "Telnet (Unsecure Remote Access)",
+                "smtp": "Simple Mail Transfer Protocol (Email)",
+                "dns": "Domain Name System",
+                "http": "Hypertext Transfer Protocol (Web)",
+                "https": "HTTP Secure (Web)"
+            }
+        },
+        "DnsResolver": {
+            "title": "DNS Resolver",
+            "description": "Simulate DNS resolution process.",
+            "resolve": "Resolve",
+            "client": "Client",
+            "recursive": "Recursive Resolver",
+            "root": "Root Server",
+            "tld": "TLD Server",
+            "authoritative": "Authoritative Server",
+            "logsTitle": "Resolution Logs",
+            "resolving": "Resolving...",
+            "logStart": "Starting resolution for",
+            "step1": "Client queries Recursive Resolver",
+            "step2": "Recursive Resolver queries Root Server",
+            "step3": "Root Server refers to TLD Server",
+            "step4": "Recursive Resolver queries TLD Server",
+            "step5": "TLD Server refers to Authoritative Server",
+            "step6": "Recursive Resolver queries Authoritative Server",
+            "logSuccess": "Resolution successful!"
+        },
+        "DhcpVisualizer": {
+            "title": "DHCP Visualizer",
+            "description": "Visualize DHCP DORA process.",
+            "client": "Client",
+            "server": "DHCP Server",
+            "step1": "Discover",
+            "step1Desc": "Client broadcasts to find server.",
+            "step2": "Offer",
+            "step2Desc": "Server offers an IP address.",
+            "step3": "Request",
+            "step3Desc": "Client requests the offered IP.",
+            "step4": "Acknowledge",
+            "step4Desc": "Server acknowledges and assigns IP.",
+            "legal": "Legal",
+            "privacy": "Privacy",
+            "terms": "Terms",
+            "rights": "© 2024 NetLearn AI. All rights reserved."
+        },
+        "Common": {
+            "curriculum": "Curriculum",
+            "learn": "Learn",
+            "complete": "Complete",
+            "next": "Next",
+            "previous": "Previous",
+            "start": "Start",
+            "reset": "Reset"
         }
     },
     "Footer": {
-        "description": "An open-source interactive learning platform for computer networking fundamentals.",
+        "description": "Interactive computer networking learning platform.",
         "learn": "Learn",
         "curriculum": "Curriculum",
         "labs": "Labs",
@@ -552,5 +661,14 @@
         "privacy": "Privacy",
         "terms": "Terms",
         "rights": "© 2024 NetLearn AI. All rights reserved."
+    },
+    "Common": {
+        "curriculum": "Curriculum",
+        "learn": "Learn",
+        "complete": "Complete",
+        "next": "Next",
+        "previous": "Previous",
+        "start": "Start",
+        "reset": "Reset"
     }
 }

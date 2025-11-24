@@ -18,7 +18,7 @@ export default function Home() {
 
           <div className="container flex flex-col items-center text-center gap-8">
             <div className="inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 border-transparent bg-primary/10 text-primary hover:bg-primary/20">
-              New: DNS Visualizer Added ✨
+              {t("newFeature")}
             </div>
 
             <h1 className="font-heading text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-bold tracking-tighter bg-clip-text text-transparent bg-gradient-to-r from-foreground to-foreground/70">
@@ -46,19 +46,19 @@ export default function Home() {
             <div className="mt-12 grid grid-cols-2 gap-8 md:grid-cols-4 text-center lg:w-full lg:max-w-4xl">
               <div className="flex flex-col gap-1">
                 <span className="text-3xl font-bold">6+</span>
-                <span className="text-sm text-muted-foreground">Core Chapters</span>
+                <span className="text-sm text-muted-foreground">{t("stats.coreChapters")}</span>
               </div>
               <div className="flex flex-col gap-1">
                 <span className="text-3xl font-bold">10+</span>
-                <span className="text-sm text-muted-foreground">Interactive Labs</span>
+                <span className="text-sm text-muted-foreground">{t("stats.interactiveLabs")}</span>
               </div>
               <div className="flex flex-col gap-1">
                 <span className="text-3xl font-bold">100%</span>
-                <span className="text-sm text-muted-foreground">Free & Open</span>
+                <span className="text-sm text-muted-foreground">{t("stats.freeOpen")}</span>
               </div>
               <div className="flex flex-col gap-1">
                 <span className="text-3xl font-bold">AI</span>
-                <span className="text-sm text-muted-foreground">Powered Review</span>
+                <span className="text-sm text-muted-foreground">{t("stats.aiReview")}</span>
               </div>
             </div>
           </div>
@@ -71,7 +71,7 @@ export default function Home() {
               {t("features")}
             </h2>
             <p className="max-w-[85%] leading-normal text-muted-foreground sm:text-lg sm:leading-7">
-              From the physical cables to the applications you use every day.
+              {t("featuresSubtitle")}
             </p>
           </div>
 

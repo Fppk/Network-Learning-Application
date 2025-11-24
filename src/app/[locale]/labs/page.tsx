@@ -11,7 +11,7 @@ export default function LabsPage() {
         {
             id: "signal-encoder",
             icon: Activity,
-            href: "/learn/physical-layer/digital-encoding",
+            href: "/learn/physical/digital-encoding",
             color: "text-blue-500",
         },
         {
@@ -23,43 +23,43 @@ export default function LabsPage() {
         {
             id: "ip-analyzer",
             icon: Binary,
-            href: "/learn/network-layer/ip-addressing",
+            href: "/learn/network/ip-addressing",
             color: "text-cyan-500",
         },
         {
             id: "routing-sim",
             icon: Route,
-            href: "/learn/network-layer/routing-algorithms",
+            href: "/learn/network/routing-algorithms",
             color: "text-emerald-500",
         },
         {
             id: "dhcp-sim",
             icon: Server,
-            href: "/learn/application-layer/dhcp",
+            href: "/learn/application/dhcp",
             color: "text-pink-500",
         },
         {
             id: "crc-calc",
             icon: Calculator,
-            href: "/learn/data-link-layer/crc-check",
+            href: "/learn/datalink/crc-check",
             color: "text-green-500",
         },
         {
             id: "subnet-calc",
             icon: Network,
-            href: "/learn/network-layer/subnetting",
+            href: "/learn/network/subnetting",
             color: "text-indigo-500",
         },
         {
             id: "tcp-handshake",
             icon: Send,
-            href: "/learn/transport-layer/tcp-handshake",
+            href: "/learn/transport/tcp-handshake",
             color: "text-orange-500",
         },
         {
             id: "dns-resolver",
             icon: Globe,
-            href: "/learn/application-layer/dns",
+            href: "/learn/application/dns",
             color: "text-purple-500",
         },
     ]
