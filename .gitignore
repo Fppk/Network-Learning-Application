@@ -2,13 +2,6 @@
 
 # dependencies
 /node_modules
-/.pnp
-.pnp.*
-.yarn/*
-!.yarn/patches
-!.yarn/plugins
-!.yarn/releases
-!.yarn/versions
 
 # testing
 /coverage
@@ -59,3 +52,5 @@ ehthumbs.db
 # Python
 __pycache__/
 *.py[cod]
+diagnose_json.py
+fix_json.py
